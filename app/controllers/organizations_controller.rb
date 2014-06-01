@@ -20,7 +20,7 @@ class OrganizationsController < ApplicationController
         # logger.debug " test #{@org.kanbans} "
 
         if @org.save
-            flash[:success] = "Welcome to the MiniTwitter App!"   # 'success' method comes from Bootstrap
+            flash[:success] = "Welcome to the MiniTwitter App!"
             redirect_to current_kanban
         else
             render '/organizations/new'

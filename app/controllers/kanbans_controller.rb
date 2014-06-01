@@ -51,8 +51,13 @@ class KanbansController < ApplicationController
 
     def update
         @kanban = Kanban.find(params[:id])
+
         if @kanban.update_attributes(kanban_params)
             # logger.debug "sussess"
+            # update organizations here?
+            update_your_org(@kanban)
+
+
             redirect_to @kanban #kanban_path(@kanban)
             # redirect_to kanbans_path
         else
