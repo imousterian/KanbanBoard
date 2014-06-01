@@ -1,5 +1,7 @@
 class KanbansController < ApplicationController
     include KanbansHelper
+    # include OrganizationsHelper
+
     # before_filter :reset_session
 
     def index
@@ -21,7 +23,7 @@ class KanbansController < ApplicationController
 
         session[:current_kanban] = Hash.new
         session[:current_kanban] = @kanban
-        logger.debug " #{@kanban} "
+        # logger.debug " #{@kanban} "
     end
 
     def default
@@ -52,9 +54,11 @@ class KanbansController < ApplicationController
     def update
         @kanban = Kanban.find(params[:id])
 
+
         if @kanban.update_attributes(kanban_params)
-            # logger.debug "sussess"
-            # update organizations here?
+            @kanban.progress_settings(@kanban.columnholder, @kanban.columnholder)
+            @kanban.save
+
             update_your_org(@kanban)
 
 

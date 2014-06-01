@@ -1,20 +1,34 @@
 <!-- <div id="modal-window" class="modal fade" role="modal-dialog"></div> -->
 
-<!-- <div class="modal fade" id='test_modal'> -->
+<!-- <div class="modal fade" id='modal-edit-fields'> -->
+<%= form_for @kanban do |f| %>
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Modal title</h4>
+        <h4 class="modal-title" align="center">Add a column</h4>
       </div>
-      <div class="modal-body">
-        <p>One fine body&hellip;</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+
+        <div class="modal-body">
+
+            <table id="kanbans" align="center">
+                <tr>
+                    <th> <%= f.label 'New column:' %> </th>
+                    <td> <%= f.text_field :columnholder %> </td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="modal-footer">
+            <div class="row text-center">
+                    <!-- <div class="btn-group"> -->
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    <%= f.submit "Save", class: "btn btn-primary btn-sm" %>
+            </div>
+        </div>
+
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
-<!-- </div>/.modal -->
 
+<% end %>

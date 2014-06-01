@@ -1,5 +1,6 @@
 class OrganizationsController < ApplicationController
      # before_filter :reset_session
+     include OrganizationsHelper
 
   def index
     @orgs = Organization.all
