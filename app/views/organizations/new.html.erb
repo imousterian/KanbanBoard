@@ -1,0 +1,12 @@
+
+<div class="container">
+    <h2> Default Kanban </h2>
+        <%= form_for(@org) do |f| %>
+            <%= f.text_field :name, value: "Enter name" %>
+        <br>
+        <br>
+
+        <%= f.submit "Save changes", class: "btn btn-sm btn-primary" %>
+
+        <% end %>
+</div>

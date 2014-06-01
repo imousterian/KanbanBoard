@@ -1,0 +1,36 @@
+<div class='container'>
+        <table id="movies">
+            <tr>
+                <th> <%= link_to @kanban.name, edit_kanban_path %> </th>
+
+                <% @kanban.settings.try(:each) do |key,value| %>
+                    <th> <%= value %> </th>
+                <% end %>
+
+                <th> <a href= "modal_form" data-target="#test_modal" data-toggle="modal" style="width:100%" %>
+                        <span class="glyphicon glyphicon-plus"></span>
+                </th>
+            </tr>
+            <tr>
+
+                <% @kanban.organizations.each do |k| %>
+                    <tr>
+                         <td> <%= k.name %> </td>
+                         <% k.progress.each do |key,value| %>
+                             <td> <%= value %> </td>
+                         <% end %>
+
+                    </tr>
+
+                <% end %>
+
+            </tr>
+
+            <td> <a href= '/organizations/new'><span class="glyphicon glyphicon-plus"></span></a></td>
+        </table>
+ </div>
+
+
+<div class="modal fade" id='test_modal'>
+    <%= render 'modal_form' %>
+</div>

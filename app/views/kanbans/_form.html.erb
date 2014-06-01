@@ -1,0 +1,27 @@
+<table id="kanbans"><tr>
+    <th>
+        <%= f.label @kanban.name%>
+    </th>
+    <td>
+        <%= f.text_field :name %>
+    </td>
+</tr>
+
+<%= f.fields_for :settings do |d| %>
+    <% @kanban.settings.try(:each) do |key,value| %>
+
+        <tr>
+            <th> <%= d.label value %> </th>
+            <td> <%= d.text_field key, :value => value %> </td>
+            <td> <a herf='#' class='btn removeRow'>X</a> </td>
+        </tr>
+
+    <% end %>
+
+</table>
+
+    <br>
+    <%= f.submit "Save changes", class: "btn btn-sm btn-primary" %>
+    <%= link_to 'Cancel', kanban_path, class: "btn btn-sm btn-primary" %>
+
+<%- end -%>

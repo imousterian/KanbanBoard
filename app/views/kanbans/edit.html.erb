@@ -1,0 +1,13 @@
+<div class="container">
+
+    <h3> Yay, let's edit the kanban </h3><br>
+
+    <%= form_for @kanban, :html => { :class => :form } do |f| -%>
+
+        <%= render :partial => "form", :locals => {:f => f} %>
+
+    <% end -%>
+
+
+</div>
+
