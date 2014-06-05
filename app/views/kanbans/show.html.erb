@@ -18,7 +18,10 @@
                     <tr>
                          <td> <%= k.name %> </td>
                          <% k.progress.each do |key,value| %>
-                             <td> <%= value %> </td>
+                             <td class="dropdown">
+                                <%= render 'dropdowns' %>
+
+                             </td>
                          <% end %>
                     </tr>
 

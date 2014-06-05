@@ -8,6 +8,8 @@ gem 'bootstrap-sass', '3.1.1.1'
 
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
+gem 'simple_form'
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 

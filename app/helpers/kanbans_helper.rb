@@ -20,17 +20,17 @@ module KanbansHelper
 
         orgs = k.organizations
         orgs.each do |org|
-            logger.debug " #{org.progress.keys} "
-            logger.debug " #{k.settings.keys} "
+            logger.debug " current organization: #{org.progress.keys} "
+            logger.debug " current kanban settings: #{k.settings.keys} "
             if org.progress.keys != k.settings.keys
                 diff = k.settings.keys - org.progress.keys
                 logger.debug " diff #{diff}"
 
                 value = diff[0]
-                hash = { 'value' => value }
+                # hash = { 'value' => value }
 
                 # org.progress = org.progress.merge(hash)
-                org.update_org_progress(:test, 'f')
+                org.update_org_progress(value, '--')
 
                 # org.progress[value] = 'test'
                 # logger.debug " diff #{diff[0]}"
@@ -39,6 +39,10 @@ module KanbansHelper
                 logger.debug " #{org.progress} "
             end
         end
+    end
+
+    def create_key_name
+        name = 'col_' + (settings.count + 1).to_s
     end
 
 

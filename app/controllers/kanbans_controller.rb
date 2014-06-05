@@ -10,6 +10,7 @@ class KanbansController < ApplicationController
 
     def new
         @kanban = Kanban.new
+
     end
 
     def edit
@@ -31,15 +32,18 @@ class KanbansController < ApplicationController
         @kanban.name = "Default Kanban # " + (Kanban.count + 1).to_s
 
         1.upto(2) do |i|
-            @kanban.columnholder = "column_" + i.to_s
+            @kanban.columnholder = "col_" + i.to_s
             @kanban.progress_settings(@kanban.columnholder, @kanban.columnholder)
         end
+
+        # flash[:notice] = 'Yay!'
 
         @kanban.save
         redirect_to kanbans_path
     end
 
     def create
+        # logger.debug " create action"
         @kanban = Kanban.new(kanban_params)
         @kanban.progress_settings(@kanban.columnholder, @kanban.columnholder)
         if @kanban.save
@@ -50,16 +54,25 @@ class KanbansController < ApplicationController
         end
     end
 
-
     def update
         @kanban = Kanban.find(params[:id])
 
-
         if @kanban.update_attributes(kanban_params)
-            @kanban.progress_settings(@kanban.columnholder, @kanban.columnholder)
-            @kanban.save
+
+            # @kanban.progress_settings(@kanban.columnholder, @kanban.columnholder)
+
+            if params[:commit] == 'Save'
+                # logger.debug " @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ "
+                @kanban.progress_settings(@kanban.create_key_name, @kanban.columnholder)
+            end
 
             update_your_org(@kanban)
+
+            @kanban.columnholder = nil
+
+            @kanban.save
+
+
 
 
             redirect_to @kanban #kanban_path(@kanban)

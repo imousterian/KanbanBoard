@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140601010701) do
     t.hstore   "progress"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "columnholder"
+    t.string   "org_columnholder"
   end
 
   create_table "sessions", force: true do |t|
