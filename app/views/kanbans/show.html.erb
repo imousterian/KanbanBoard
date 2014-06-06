@@ -13,32 +13,34 @@
                 </th>
 
             </tr>
-            <!-- <tr> -->
 
                 <% @kanban.organizations.each do |k| %>
                     <tr class="dots">
-                        <td> <%= k.name %> </td>
+                        <td> <%= k.org_columnholder %> </td>
 
-                        <% k.progress.each do |key,value| %>
-                            <td class="dropdown">
-                                <%= render 'dropdowns' %>
-                            </td>
+                        <%= form_for k do |e| %>
+
+                            <% k.progress.each do |key,value| %>
+                                <td class="dropdown" >
+                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle extended"> <b class="caret caret-right" ></b> </a>
+                                    <ul class="dropdown-menu dropdown-menu-left" role="menu" >
+                                        <%= render :partial => 'dropdowns', :locals => { :e => e } %>
+                                    </ul>
+                                </td>
+
+                            <% end %>
+
                         <% end %>
                     </tr>
 
                 <% end %>
 
-            <!-- </tr> -->
-
             <td> <a href= '/organizations/new'><span class="glyphicon glyphicon-plus"></span></a></td>
 
         </table>
 
-        <!-- <div class='nook'> </div> -->
 
         <%= link_to "Back to all kanbans", kanbans_path %>
-
-
 
  </div>
 

@@ -4,15 +4,15 @@
     <table id="movies">
       <tr>
         <th>Title</th>
-        <th>Summary</th>
-        <th>Columnholder</th>
+        <th>Count of elements</th>
+        <th>Count of columns</th>
       </tr>
 
     <% @kanbans.each do |kanb| %>
       <tr>
         <td><%= link_to kanb.name, kanban_path(kanb) %></td>
-        <td><%= kanb.settings %></td>
-        <td><%= kanb.columnholder %></td>
+        <td><%= kanb.organizations.count %></td>
+        <td><%= kanb.settings.length %></td>
       </tr>
     <% end %>
     </table>

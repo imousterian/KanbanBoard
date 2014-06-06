@@ -45,6 +45,7 @@ ul.dropdown-menu li a:hover{
 
 #redcolored{
     background-color: #FF0000 ;
+    height: 100%;
     // background-color: blue;
 }
 
@@ -54,4 +55,24 @@ ul.dropdown-menu li a:hover{
 
 #greencolored{
     background-color: #66FF99;
+}
+
+.x{
+    margin-right: 0px;
+}
+
+#testt{
+    margin-left: 5px;
+}
+
+.extended{
+    display: block;
+    width:100%;
+}
+
+.caret-right {
+  // border-right: 0px solid black;
+  // border-right: 0;
+  border-top: 4px solid transparent;
+  // border-bottom: 4px solid transparent;
 }

@@ -34,9 +34,23 @@ class OrganizationsController < ApplicationController
   def edit
   end
 
+  def update
+        current_kanban = session[:current_kanban]
+
+        @org = Organization.find(params[:id])
+
+        if @org.update_attributes(org_params)
+
+            @org.save
+
+            redirect_to current_kanban
+        end
+
+  end
+
   private
         def org_params
-            params.require(:organization).permit(:name, :progress, :columnholder)
+            params.require(:organization).permit(:name, :progress, :org_columnholder)
         end
 
 

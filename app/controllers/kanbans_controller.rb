@@ -61,7 +61,6 @@ class KanbansController < ApplicationController
 
             if params[:commit] == 'Save'
                 @kanban.progress_settings(@kanban.create_key_name, @kanban.columnholder)
-
                 @kanban.columnholder = nil
             end
 

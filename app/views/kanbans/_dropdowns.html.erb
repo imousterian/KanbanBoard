@@ -1,13 +1,31 @@
 
-    <a href="#" data-toggle="dropdown" class="dropdown-toggle"> color <b class="caret" ></b></a>
 
-    <ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenu3" >
 
-          <li role="presentation" ><a id='whitecolored' role="menuitem" tabindex="-1" href="#" > White </a></li>
-          <li role="presentation"><a id='greycolored' role="menuitem" tabindex="-1" href="#" > Grey </a></li>
-          <li role="presentation"><a id='greencolored' role="menuitem" tabindex="-1" href="#" > Green </a></li>
-          <li role="presentation"><a id='yelcolored' role="menuitem" tabindex="-1" href="#" > Yellow </a></li>
-          <li role="presentation"><a id='redcolored' role="menuitem" tabindex="-1" href="#"> Red </a></li>
 
-    </ul>
+    <!-- <li role="presentation" > <a id='whitecolored' role="menuitem" tabindex="-1" href = '#' > White </a></li>
+    <li role="presentation"> <a id='greycolored' role="menuitem" tabindex="-1" href="#" > Grey </a></li>
+    <li role="presentation"> <a id='greencolored' role="menuitem" tabindex="-1" href="#" > Green </a></li>
+    <li role="presentation"> <a id='yelcolored' role="menuitem" tabindex="-1" href="#" > Yellow </a></li> -->
 
+
+
+    <li role="presentation">
+
+        <!-- <a id='greencolored' > </a> -->
+        <p id='greencolored'>
+            <%= e.radio_button :org_columnholder, "greencolored", id: 'testt', :onclick => "this.form.submit();" %>
+            <%= e.label "I am green!" %>
+        </p>
+
+    </li>
+
+    <li role="presentation">
+
+        <!-- <a id='redcolored' > </a> -->
+        <p id='redcolored'>
+            <%= e.radio_button :org_columnholder, "redcolored", id: 'testt',  :onclick => "this.form.submit();"  %>
+        </p>
+
+
+
+    </li>
