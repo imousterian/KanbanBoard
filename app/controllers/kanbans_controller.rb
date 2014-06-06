@@ -19,17 +19,17 @@ class KanbansController < ApplicationController
 
     def show
         # reset_session
+        session[:current_kanban] = Hash.new
         @kanban = Kanban.find(params[:id])
         # @orgs = @kanban.organizations
-
-        session[:current_kanban] = Hash.new
         session[:current_kanban] = @kanban
-        # logger.debug " #{@kanban} "
+
     end
+
 
     def default
         @kanban = Kanban.new
-        @kanban.name = "Default Kanban # " + (Kanban.count + 1).to_s
+        @kanban.name = "Default Kanban: " + (Kanban.count + 1).to_s
 
         1.upto(2) do |i|
             @kanban.columnholder = "col_" + i.to_s
@@ -59,21 +59,16 @@ class KanbansController < ApplicationController
 
         if @kanban.update_attributes(kanban_params)
 
-            # @kanban.progress_settings(@kanban.columnholder, @kanban.columnholder)
-
             if params[:commit] == 'Save'
-                # logger.debug " @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ "
                 @kanban.progress_settings(@kanban.create_key_name, @kanban.columnholder)
+
+                @kanban.columnholder = nil
             end
 
             update_your_org(@kanban)
 
-            @kanban.columnholder = nil
 
             @kanban.save
-
-
-
 
             redirect_to @kanban #kanban_path(@kanban)
             # redirect_to kanbans_path
@@ -81,6 +76,7 @@ class KanbansController < ApplicationController
             flash[:error] = "boo"
             redirect_to kanbans_path
         end
+
 
     end
 

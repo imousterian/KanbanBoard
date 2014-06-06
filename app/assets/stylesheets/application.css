@@ -16,7 +16,7 @@
   margin: 0;
   padding: 0;
   background: White;
-  color: DarkSlateGrey;
+  /*color: DarkSlateGrey;*/
   font-family: Tahoma, Verdana, sans-serif;
   font-size: 10pt;
 }
@@ -24,21 +24,24 @@ div#main {
   margin: 0;
   padding: 0 20px 20px;
 }
+
 a {
   background: transparent;
-  color: maroon;
+  /*color: maroon;*/
   text-decoration: underline;
-  font-weight: bold;
+  /*font-weight: bold;*/
 }
-h1 {
+
+/*h1 {
   color: maroon;
   font-size: 150%;
   font-style: italic;
   display: block;
   width: 100%;
   border-bottom: 1px solid DarkSlateGrey;
-}
-h1.title {
+}*/
+
+/*h1.title {
   margin: 0 0 1em;
   padding: 10px;
   background-color: orange;
@@ -46,34 +49,41 @@ h1.title {
   border-bottom: 4px solid gold;
   font-size: 2em;
   font-style: normal;
-}
+}*/
+
 table#movies {
   margin: 10px;
   border-collapse: collapse;
   width: 100%;
-  border-bottom: 2px solid black;
+  /*border-bottom: 2px solid black;*/
 }
+
 table#movies th {
-  border: 2px solid white;
+  border-bottom: 1px dotted black;
   font-weight: bold;
   background-color: wheat;
 }
+
 table#movies th, table#movies td {
   padding: 4px;
   text-align: left;
+}
+
+.dots td{
+    border: 1px dotted black;
 }
 table#movies th:last-child{
     width:1%;
     white-space: nowrap;
 }
 
-#notice #warning {
+/*#notice #warning {
   background: rosybrown;
   margin: 1em 0;
   padding: 4px;
-}
+}*/
+
 form label {
-  /*display: block;*/
   line-height: 25px;
   font-weight: bold;
   color: maroon;
@@ -83,3 +93,8 @@ table#kanbans th{
     padding-right:15px;
 }
 
+.nook{
+    width: 100px;
+    height:100px;
+    background-color:red;
+}

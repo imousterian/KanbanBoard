@@ -20,11 +20,9 @@ module KanbansHelper
 
         orgs = k.organizations
         orgs.each do |org|
-            logger.debug " current organization: #{org.progress.keys} "
-            logger.debug " current kanban settings: #{k.settings.keys} "
             if org.progress.keys != k.settings.keys
                 diff = k.settings.keys - org.progress.keys
-                logger.debug " diff #{diff}"
+                # logger.debug " diff #{diff}"
 
                 value = diff[0]
                 # hash = { 'value' => value }
@@ -35,25 +33,18 @@ module KanbansHelper
                 # org.progress[value] = 'test'
                 # logger.debug " diff #{diff[0]}"
                 # org.progress = k.settings
-                org.save
-                logger.debug " #{org.progress} "
+                # org.save
+            else
+                # logger.debug " create tests "
+                org.progress = k.settings
+
             end
+            org.save
         end
     end
 
     def create_key_name
         name = 'col_' + (settings.count + 1).to_s
     end
-
-
-
-    # def column_generator
-    #     # arr = Array.new
-    #     # arr.push(name)
-    #     # settings.each { |i| arr.push i.keys }
-    #     # arr.push (settings.keys)
-    #     # return arr.flatten
-    #     return settings.keys
-    # end
 
 end

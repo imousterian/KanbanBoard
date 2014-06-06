@@ -30,19 +30,28 @@ textarea {
     min-width: 0px;
 }
 
-.greycolored{
-    background: #F8F8F8 ;
-    // background-color: blue;
+ul.dropdown-menu li a:hover{
+    color: blue;
+    // text-weight: bold;
 }
-.redcolored{
-    background: #FF0000 ;
+
+#whitecolored{
+    background-color: white;
+}
+
+#greycolored{
+    background-color: #F8F8F8 ;
+}
+
+#redcolored{
+    background-color: #FF0000 ;
     // background-color: blue;
 }
 
-.yelcolored{
-    background: #FFFF99;
+#yelcolored{
+    background-color: #FFFF99;
 }
 
-.greencolored{
-    background: #66FF99;
+#greencolored{
+    background-color: #66FF99;
 }

@@ -10,6 +10,9 @@ gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
 gem 'simple_form'
 
+# Use jquery-turbolinks to fix problems binding jQuery and turbolinks
+gem 'jquery-turbolinks'
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 

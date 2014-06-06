@@ -1,3 +1,4 @@
+
 <div class='container'>
         <table id="movies">
             <tr>
@@ -7,35 +8,41 @@
                     <th> <%= value %> </th>
                 <% end %>
 
-                <th> <a href= "modal_form" data-target="#test_modal" data-toggle="modal" style="width:100%" %>
+                <th> <a href = '<%=link_to @kanban %>' data-target="#test_modal" data-toggle="modal" style="width:100%" >
                         <span class="glyphicon glyphicon-plus"></span>
                 </th>
 
             </tr>
-            <tr>
+            <!-- <tr> -->
 
                 <% @kanban.organizations.each do |k| %>
-                    <tr>
-                         <td> <%= k.name %> </td>
-                         <% k.progress.each do |key,value| %>
-                             <td class="dropdown">
-                                <%= render 'dropdowns' %>
+                    <tr class="dots">
+                        <td> <%= k.name %> </td>
 
-                             </td>
-                         <% end %>
+                        <% k.progress.each do |key,value| %>
+                            <td class="dropdown">
+                                <%= render 'dropdowns' %>
+                            </td>
+                        <% end %>
                     </tr>
 
                 <% end %>
 
-            </tr>
+            <!-- </tr> -->
 
             <td> <a href= '/organizations/new'><span class="glyphicon glyphicon-plus"></span></a></td>
 
         </table>
 
- </div>
+        <!-- <div class='nook'> </div> -->
 
+        <%= link_to "Back to all kanbans", kanbans_path %>
+
+
+
+ </div>
 
 <div class="modal fade" id='test_modal' tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" area-hidden="true">
     <%= render 'modal_form' %>
 </div>
+

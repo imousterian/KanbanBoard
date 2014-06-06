@@ -13,10 +13,10 @@ class OrganizationsController < ApplicationController
   def create
         current_kanban = session[:current_kanban]
         # reset_session
-        logger.debug " create org action #{current_kanban} "
+        # logger.debug " create org action #{current_kanban} "
         @org = Organization.new(org_params)
         @org.progress = current_kanban.settings
-        logger.debug "#{current_kanban.settings}"
+        # logger.debug "#{current_kanban.settings}"
         @org.kanbans << current_kanban
         # logger.debug " test #{@org.kanbans} "
 
