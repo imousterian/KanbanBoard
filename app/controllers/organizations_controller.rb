@@ -11,14 +11,14 @@ class OrganizationsController < ApplicationController
   end
 
   def create
+
         current_kanban = session[:current_kanban]
-        # reset_session
-        # logger.debug " create org action #{current_kanban} "
+
         @org = Organization.new(org_params)
+
         @org.progress = current_kanban.settings
-        # logger.debug "#{current_kanban.settings}"
+
         @org.kanbans << current_kanban
-        # logger.debug " test #{@org.kanbans} "
 
         if @org.save
             flash[:success] = "Welcome to the Kanban App!"
@@ -41,7 +41,16 @@ class OrganizationsController < ApplicationController
 
         if @org.update_attributes(org_params)
 
+            arr = @org.org_columnholder.split(' ')
+            key_to_update = arr[0]
+            value_to_update = arr[1]
+
+            @org.update_org_progress key_to_update, value_to_update
+
+            @org.org_columnholder = nil
+
             @org.save
+
 
             redirect_to current_kanban
         end
@@ -50,7 +59,7 @@ class OrganizationsController < ApplicationController
 
   private
         def org_params
-            params.require(:organization).permit(:name, :progress, :org_columnholder)
+            params.require(:organization).permit! #(:name, :progress, :org_columnholder)
         end
 
 

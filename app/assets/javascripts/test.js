@@ -3,33 +3,36 @@
 // jQuery(document).ready(function($)
 $(function()
 {
-    // console.log("test");
-      // var color;
-      // "ul.dropdown-menu > li > a"
-      var test;
-      $("td.dropdown > ul.dropdown-menu > li > p").click(function() {
-        // $(".nook").click(function() {
-      // $("td.dropdown.dropdown-toggle > ul.dropdown-menu > li > a").click(function() {
+    // paint = function(element, backgroundColor){
+    //     element.style.backgroundColor = backgroundColor;
+    //     // element.style.color = textColor;
+    // };
 
-        var color = $(this).css("background-color");
-        console.log (color);
-        // console.log("test2");
+    // $('td.dropdown[data-background-color]').hover(function(){
+    //     backgroundColor = $(this).data("background-color");
+    //     paint(this, backgroundColor);
+    // });
 
-        // var index = $(this).parent().parent().parent().parent().parent().index();
-        var $e = $(this).parent().parent().parent();
-        // $(this).parent().parent().dropdown('toggle');
+      // $("td.dropdown > ul.dropdown-menu > li > p").click(function() {
 
-        $e.css( "background-color", color );
+      //   var color = $(this).css("background-color");
+      //   var $e = $(this).parent().parent().parent();
 
-        test = color;
+      //   console.log(color);
 
-        // return color;
+      //   // $e.css( "background-color", color );
 
-        // console.log(index);
+      // });
 
-        // return false;
-      });
-
+        // when the #country field changes
+        // $("#profile_country_id").change(function() {
+        //     // make a POST call and replace the content
+        //     var country = $('select#profile_country_id :selected').val();
+        //     if(country == "") country="0";
+        //     jQuery.get('/profiles/update_state_select/' + country, function(data){
+        //         $("#addressStates").html(data);
+        //     })
+        //     return false;
+        // });
 
 });
-

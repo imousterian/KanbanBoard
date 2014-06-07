@@ -27,7 +27,7 @@ textarea {
 }
 
 .dropdown-menu{
-    min-width: 0px;
+    min-width: 100px;
 }
 
 ul.dropdown-menu li a:hover{
@@ -55,6 +55,7 @@ ul.dropdown-menu li a:hover{
 
 #greencolored{
     background-color: #66FF99;
+    // text-align:center;
 }
 
 .x{
@@ -62,7 +63,8 @@ ul.dropdown-menu li a:hover{
 }
 
 #testt{
-    margin-left: 5px;
+    // margin-left: 5px;
+    // text-align:center;
 }
 
 .extended{
@@ -70,9 +72,22 @@ ul.dropdown-menu li a:hover{
     width:100%;
 }
 
-.caret-right {
-  // border-right: 0px solid black;
+b.caret-right {
+  border-right: 2px solid black;
   // border-right: 0;
   border-top: 4px solid transparent;
   // border-bottom: 4px solid transparent;
+}
+
+p.line{
+    border-top: 1px solid black;
+    margin: 10px;
+    width: 100%;
+    padding: 4px;
+    margin-top: 50px;
+}
+
+p.colored{
+    text-align:center;
+    margin: 0px;
 }
