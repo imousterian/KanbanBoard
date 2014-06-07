@@ -2,6 +2,9 @@ module KanbansHelper
 
     def progress_settings (*args)
 
+        # borrowed from
+        # http://www.artandlogic.com/blog/2012/09/custom-fields-in-rails/
+
        key, value = args
        key = key && key.to_s
        if args.size == 1
@@ -29,14 +32,9 @@ module KanbansHelper
 
                 # org.progress = org.progress.merge(hash)
                 org.update_org_progress(value, '--')
-
-                # org.progress[value] = 'test'
-                # logger.debug " diff #{diff[0]}"
-                # org.progress = k.settings
-                # org.save
             else
                 # logger.debug " create tests "
-                org.progress = k.settings
+                # org.progress = k.settings
 
             end
             org.save

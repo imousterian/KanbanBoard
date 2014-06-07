@@ -2,6 +2,9 @@ module OrganizationsHelper
 
     def update_org_progress(*args)
 
+        # borrowed from
+        # http://www.artandlogic.com/blog/2012/09/custom-fields-in-rails/
+
        key, value = args
        key = key && key.to_s
        if args.size == 1
