@@ -1,7 +1,8 @@
 
 <div class='container'>
+    <h2> Listing progress for <%= @kanban.name %> </h2>
 
-        <table id="movies" class='table-hover for-plus'>
+        <table id="kanban" class='table-hover for-plus'>
 
             <tr>
                 <th> <%= link_to @kanban.name, edit_kanban_path %> </th>
@@ -32,14 +33,26 @@
                                             <ul class="dropdown-menu dropdown-menu-left" role="menu" >
 
                                                     <li role="presentation">
+                                                        <p id='whitecolored' class="colored" >
+                                                            <%= f.radio_button :org_columnholder, [key, "#FFFFFF"], :onclick => "this.form.submit();" %>
+                                                        </p>
+                                                    </li>
+
+                                                    <li role="presentation">
+                                                        <p id='greycolored' class="colored" >
+                                                            <%= f.radio_button :org_columnholder, [key, "#F8F8F8"], :onclick => "this.form.submit();" %>
+                                                        </p>
+                                                    </li>
+
+                                                    <li role="presentation">
                                                         <p id='greencolored' class="colored" >
-                                                            <%= f.radio_button :org_columnholder, [key, "#66FF99"], :onclick => "this.form.submit();" %>
+                                                            <%= f.radio_button :org_columnholder, [key, "#66FF66"], :onclick => "this.form.submit();" %>
                                                         </p>
                                                     </li>
 
                                                     <li role="presentation">
                                                         <p id='yelcolored' class='colored'>
-                                                            <%= f.radio_button :org_columnholder, [key, "#FFFF99"], :onclick => "this.form.submit();" %>
+                                                            <%= f.radio_button :org_columnholder, [key, "#FFFF33"], :onclick => "this.form.submit();" %>
                                                         </p>
                                                     </li>
                                                     <li role="presentation">
@@ -67,7 +80,7 @@
             </a>
         </p>
 
-        <p class='line'>
+        <p class='line line-show'>
             <%= link_to "Back to all kanbans", kanbans_path %>
         </p>
 

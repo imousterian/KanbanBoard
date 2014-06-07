@@ -32,7 +32,7 @@ textarea {
 }
 
 #whitecolored{
-    background-color: white;
+    background-color: #ffffff;
 }
 
 #greycolored{
@@ -41,16 +41,14 @@ textarea {
 
 #redcolored{
     background-color: #FF0000 ;
-    // height: 100%;
-    // background-color: blue;
 }
 
 #yelcolored{
-    background-color: #FFFF99;
+    background-color: #FFFF33; //#FFFF99;
 }
 
 #greencolored{
-    background-color: #66FF99;
+    background-color: #66FF66; //#66FF99;
     // text-align:center;
 }
 
@@ -65,26 +63,31 @@ textarea {
 }
 
 b.caret-right {
-  border-right: 2px solid black;
-  // border-right: 0;
+  // border-right: 2px solid black;
   border-top: 4px solid transparent;
-  // border-bottom: 4px solid transparent;
+}
+
+
+
+p.line, p.line2{
+    margin: 10px;
+    width: 100%;
+    padding: 4px;
 }
 
 p.line{
     border-top: 1px solid black;
-    margin: 10px;
-    width: 100%;
-    padding: 4px;
     margin-top: 50px;
 }
 
 p.line2{
-    margin: 10px;
-    width: 100%;
-    padding: 4px;
     margin-top: -5px;
 }
+
+p.line-show{
+    width:97%;
+}
+
 
 p.colored{
     text-align:center;
@@ -134,7 +137,7 @@ table#movies, table#kanban{
 }
 
 
-table#movies.for-plus {
+table#kanban.for-plus {
     th:last-child{
         width:3%;
         white-space: nowrap;
@@ -150,18 +153,17 @@ table#movies.for-plus {
 @media (min-width: 768px) {
   .container-index {
     max-width: 730px;
-
-    h1{
-        text-align: center;
-        padding-bottom: 20px;
-    }
-
-    .jumbotron{
-        background-color: white ;
-    }
   }
 }
 
+/* Customize container */
+
+.container{
+    h1,h2{
+        text-align: center;
+        padding-bottom: 60px;
+    }
+  }
 
 // tooltips:
 
