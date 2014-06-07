@@ -13,30 +13,17 @@
  */
 
  html, body {
-  margin: 0;
-  padding: 0;
+  /*margin: 0;*/
+  /*padding: 0;*/
   /*background: white;*/
-  font-family: Tahoma, Verdana, sans-serif;
-  font-size: 10pt;
+  /*font-family: Tahoma, Verdana, sans-serif;*/
+  /*font-size: 10pt;*/
 }
-
-/*a {
-  background: transparent;
-  text-decoration: underline;
-}*/
-
 
 
 .dots td{
-    border: 1px dotted black;
+    /*border: 1px dotted black;*/
 }
-
-
-/*form label {
-  line-height: 25px;
-  font-weight: bold;
-  color: maroon;
-}*/
 
 table#kanbans th{
     padding-right:15px;

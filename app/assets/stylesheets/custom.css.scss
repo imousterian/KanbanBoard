@@ -8,6 +8,7 @@ html {
 
 body {
   padding: 60px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 section {
@@ -19,11 +20,11 @@ textarea {
 }
 
 .center {
-  text-align: center;
+  // text-align: center;
 }
 
 .center h1 {
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
 }
 
 .dropdown-menu{
@@ -40,7 +41,7 @@ textarea {
 
 #redcolored{
     background-color: #FF0000 ;
-    height: 100%;
+    // height: 100%;
     // background-color: blue;
 }
 
@@ -57,10 +58,6 @@ textarea {
     margin-right: 0px;
 }
 
-#testt{
-    // margin-left: 5px;
-    // text-align:center;
-}
 
 .extended{
     display: block;
@@ -95,11 +92,14 @@ p.colored{
 }
 
 
-table#movies{
+table#movies, table#kanban{
+
     margin: 10px;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 1px;
     width: 100%;
     table-layout: fixed;
+
 
     th:first-child{
         text-align: left;
@@ -109,27 +109,58 @@ table#movies{
     }
 
     th{
-        border-bottom: 1px dotted black;
         font-weight: bold;
-        background-color: wheat;
-    }
+        background-color: #4c4c4c;
+        font-size: 11pt;
+        color: #ffffff;
 
+        a{
+            color: #ffffff;
+        }
+    }
+    td{
+        background-color: #F8F8F8;
+    }
 
     th, td{
-        padding: 4px;
+        padding: 6px;
         text-align: center;
     }
+
+    tr:hover td{
+        background-color: white;
+    }
+
 }
 
 
-table#movies.for-plus th:last-child{
-        width:1%;
+table#movies.for-plus {
+    th:last-child{
+        width:3%;
         white-space: nowrap;
         background: white;
     }
+    th:first-child{
+        width: 35%;
+        white-space: nowrap;
+    }
+}
 
+/* Customize container-index */
+@media (min-width: 768px) {
+  .container-index {
+    max-width: 730px;
 
+    h1{
+        text-align: center;
+        padding-bottom: 20px;
+    }
 
+    .jumbotron{
+        background-color: white ;
+    }
+  }
+}
 
 
 
