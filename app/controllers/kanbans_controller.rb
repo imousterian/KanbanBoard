@@ -3,7 +3,8 @@ class KanbansController < ApplicationController
 
 
     def index
-        @kanbans = Kanban.all
+        # @kanbans = Kanban.all
+        @kanbans = Kanban.order(:created_at => :desc)
     end
 
     def new
