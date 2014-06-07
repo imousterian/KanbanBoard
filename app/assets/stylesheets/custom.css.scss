@@ -103,6 +103,9 @@ table#movies, table#kanban{
 
     th:first-child{
         text-align: left;
+        a{
+            color: #ffffff;
+        }
     }
     td:first-child{
         text-align: left;
@@ -114,9 +117,6 @@ table#movies, table#kanban{
         font-size: 11pt;
         color: #ffffff;
 
-        a{
-            color: #ffffff;
-        }
     }
     td{
         background-color: #F8F8F8;
@@ -163,13 +163,22 @@ table#movies.for-plus {
 }
 
 
+// tooltips:
 
+.tooltip.right .tooltip-inner {
+    background-color: #428bca;
+}
+.tooltip.right .tooltip-arrow {
+    border-right-color: #428bca;
+}
 
-
-
-
-
-
+.tooltip.bottom .tooltip-inner {
+    background-color: #428bca;
+    font-weight: bold;
+}
+.tooltip.bottom .tooltip-arrow {
+    border-right-color: #428bca;
+}
 
 
 
