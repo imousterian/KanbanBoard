@@ -1,6 +1,6 @@
 
 <div class='container'>
-        <table id="movies">
+        <table id="movies" class='table table-hover'>
             <tr>
                 <th> <%= link_to @kanban.name, edit_kanban_path %> </th>
 
@@ -57,9 +57,13 @@
                 <% end %> <!-- end of kanban.organizations.each -->
 
 
-            <td> <a href= '/organizations/new'><span class="glyphicon glyphicon-plus"></span></a></td>
+            <!-- <td> <a href= '/organizations/new'><span class="glyphicon glyphicon-plus"></span></a></td> -->
 
         </table>
+
+        <p class='line2'>
+            <a href= '/organizations/new'><span class="glyphicon glyphicon-plus"></span></a>
+        </p>
 
         <p class='line'>
             <%= link_to "Back to all kanbans", kanbans_path %>
