@@ -1,6 +1,8 @@
 
 <div class='container'>
-        <table id="movies" class='table table-hover'>
+
+        <table id="movies" class='table-hover for-plus'>
+
             <tr>
                 <th> <%= link_to @kanban.name, edit_kanban_path %> </th>
 
@@ -11,6 +13,7 @@
                 <th> <a href = '<%=link_to @kanban %>' data-target="#test_modal" data-toggle="modal" style="width:100%" >
                         <span class="glyphicon glyphicon-plus"></span>
                 </th>
+
             </tr>
 
                 <% @kanban.organizations.each do |this_org| %>
