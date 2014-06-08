@@ -51,6 +51,16 @@ class KanbansController < ApplicationController
 
     end
 
+    # def delete
+    #     @kanban = Kanban.find(params[:id])
+    #     # @kanban.destroy(params[:to_delete])
+    #     # @kanban.destroy
+    #     @kanban[:settings].delete(params[:to_delete])
+    #     logger.debug " test #{ @kanban[params[:to_delete]] }"
+    #     # redirect_to kanbans_path(@kanban)
+    #     # params[:user][:membership_attributes].delete(:"expiration_date(3i)")
+    # end
+
     def update
 
         @kanban = Kanban.find(params[:id])
@@ -62,12 +72,25 @@ class KanbansController < ApplicationController
                 @kanban.columnholder = nil
             end
 
-            update_your_org(@kanban)
+            if params[:remove_columns]
+                if !params[:cols].empty?
+                    key_to_delete = params[:cols]
+                    key_to_delete.each_key do |k|
 
+                        @kanban.delete_from_hstore(k)
+
+                        @kanban.organizations.each do |org|
+                            org.org_delete_from_hstore(k)
+                        end
+                    end
+                end
+            end
+
+            update_your_org(@kanban)
 
             @kanban.save
 
-            redirect_to @kanban #kanban_path(@kanban)
+            redirect_to @kanban
 
         else
             flash[:error] = "boo"

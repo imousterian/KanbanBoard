@@ -19,7 +19,7 @@
 
                 <% @kanban.organizations.each do |this_org| %>
 
-                    <tr class="dots">
+                    <tr>
                         <td> <%= this_org.name %> </td>
 
                             <%= form_for(this_org) do |f| %>

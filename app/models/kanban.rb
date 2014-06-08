@@ -6,6 +6,13 @@ class Kanban < ActiveRecord::Base
 
     # store_accessor :settings
 
+    def delete_from_hstore(key)
+        delete_from_hstore_string = %(settings = delete("settings", ?))
+        self.class.where(id: self.id).update_all([delete_from_hstore_string, key])
+    end
+
+
+
 
 
 end

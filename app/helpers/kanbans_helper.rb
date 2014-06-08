@@ -25,18 +25,14 @@ module KanbansHelper
         orgs.each do |org|
             if org.progress.keys != k.settings.keys
                 diff = k.settings.keys - org.progress.keys
-                # logger.debug " diff #{diff}"
 
                 value = diff[0]
-                # hash = { 'value' => value }
 
-                # org.progress = org.progress.merge(hash)
                 org.update_org_progress(value, '--')
             else
-                # logger.debug " create tests "
-                # org.progress = k.settings
 
             end
+
             org.save
         end
     end

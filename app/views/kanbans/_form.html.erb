@@ -13,7 +13,8 @@
         <tr>
             <th> <%= d.label value %> </th>
             <td> <%= d.text_field key, :value => value %> </td>
-            <td> <a href='#' class='btn removeRow'>X</a> </td>
+            <td> <%= check_box_tag "cols[#{key}]" %> </td>
+            <!-- <td> <a href='#' class='btn2 removeRow2'>X</a> </td> -->
         </tr>
 
     <% end %>
@@ -22,6 +23,7 @@
 
     <br>
     <%= f.submit "Save changes", class: "btn btn-sm btn-primary" %>
+    <%= f.submit "Delete selected", class: "btn btn-sm btn-primary", name: "remove_columns" %>
     <%= link_to 'Cancel', kanban_path, class: "btn btn-sm btn-primary" %>
 
 <%- end -%>
