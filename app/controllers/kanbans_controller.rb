@@ -40,8 +40,6 @@ class KanbansController < ApplicationController
 
         @kanban.save
 
-        # @kanban.create_kanban_milestone(@kanban.id)
-
         redirect_to kanbans_path
     end
 
@@ -63,16 +61,36 @@ class KanbansController < ApplicationController
 
         @kanban = Kanban.find(params[:id])
 
-        if params[:update_columns]
-            # @kanban.kanban_milestones.each do |i|
-
-            # end
-            logger.debug " params: #{params[:update_attributes]} "
-        end
-
         if @kanban.update_attributes(kanban_params)
 
-            logger.debug " #{kanban_params} "
+            logger.debug " test: #{kanban_params}"
+
+            if params[:delete_columns]
+                to_delete = params[:kanban][:kanban_milestones_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
+                KanbanMilestone.delete(to_delete)
+                # @kanban.kanban_milestones.collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }.marked_for_destruction? # => true
+                flash[:notice] = "Kanban milestones removed."
+            end
+            if params[:add_column]
+                # unless params[:kanban][:kanban_milestones_attributes].blank?
+                #   for attribute in params[:kanban][:kanban_milestones_attributes]
+                #     @kanban.kanban_milestones.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
+                #   end
+                # end
+                # @kanban.kanban_milestones.build
+            end
+
+                @kanban.save
+
+                redirect_to @kanban
+        else
+                flash[:error] = "boo"
+                redirect_to kanbans_path
+        end
+
+
+
+
 
             # if params[:commit] == 'Save'
             #     @kanban.progress_settings(@kanban.create_key_name, @kanban.columnholder)
@@ -94,15 +112,6 @@ class KanbansController < ApplicationController
             # end
 
             # update_your_org(@kanban)
-
-            @kanban.save
-
-            redirect_to @kanban
-
-        else
-            flash[:error] = "boo"
-            redirect_to kanbans_path
-        end
 
     end
 

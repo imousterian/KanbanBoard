@@ -12,10 +12,13 @@
         <div class="modal-body">
 
             <table id="kanbans" align="center">
-                <tr>
-                    <th> <%= f.label 'New column:' %> </th>
-                    <td> <%= f.text_field :columnholder %> </td>
-                </tr>
+
+                <%= f.fields_for :kanban_milestones, @kanban.kanban_milestones.build do |ff| %>
+                    <tr>
+                        <th> <%= f.label 'New column:' %> </th>
+                        <td> <%= ff.text_field :kms_name %> </td>
+                    </tr>
+                <% end %>
             </table>
         </div>
 
@@ -23,7 +26,7 @@
             <div class="row text-center">
                     <!-- <div class="btn-group"> -->
                     <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
-                    <%= f.submit "Save", class: "btn btn-primary btn-sm" %>
+                    <%= f.submit "Save", class: "btn btn-primary btn-sm", name: "add_column" %>
             </div>
         </div>
 

@@ -16,16 +16,41 @@ class OrganizationsController < ApplicationController
 
         @org = Organization.new(org_params)
 
-        @org.progress = current_kanban.settings
+        current_kanban.kanban_milestones.each do |i|
+            # @org.milestones.build
+
+            # @org.milestones.attributes = current_kanban.kanban_milestones.attributes
+
+            # @org.milestones.each_with_index do |j, index|
+            #     j.milestone_key = i.kms_name
+            #     j.milestone_value = "default"
+            #     j.kanban_milestone_id = i.id
+            # end
+
+            @milestone = Milestone.new
+            @milestone.milestone_key = i.kms_name
+            @milestone.milestone_value = "default"
+            @milestone.kanban_milestone_id = i.id
+            @milestone.save
+            @org.milestones << @milestone
+        end
 
         @org.kanbans << current_kanban
-
         if @org.save
             flash[:success] = "Welcome to the Kanban App!"
             redirect_to current_kanban
         else
             render '/organizations/new'
         end
+
+        # # @org.progress = current_kanban.settings
+        # @org.kanbans << current_kanban
+        # if @org.save
+        #     flash[:success] = "Welcome to the Kanban App!"
+        #     redirect_to current_kanban
+        # else
+        #     render '/organizations/new'
+        # end
   end
 
   def show
@@ -59,7 +84,8 @@ class OrganizationsController < ApplicationController
 
   private
         def org_params
-            params.require(:organization).permit! #(:name, :progress, :org_columnholder)
+            # params.require(:organization).permit! #(:name, :progress, :org_columnholder)
+            params.require(:organization).permit(:name, milestones_attributes: [:id, :milestone_key, :milestone_value])
         end
 
 

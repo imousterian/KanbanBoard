@@ -5,4 +5,8 @@ class Milestone < ActiveRecord::Base
     belongs_to :organizations
     belongs_to :kanban_milestone
 
+    # def create_milestone
+
+    # end
+
 end

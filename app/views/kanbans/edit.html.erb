@@ -20,12 +20,12 @@
         <%= f.fields_for :kanban_milestones do |ff| %>
 
             <tr>
-                <th> <%= ff.label :kms_name %> </th>
+                <th> <%= ff.label @kanban.kanban_milestones[ff.options[:child_index]].kms_name %> </th>
                 <td> <%= ff.text_field :kms_name %> </td>
-                <td> <%= check_box_tag "cols[#{:kms_name}]" %> </td>
+                <td> <%= ff.check_box :_destroy %> </td>
+                <td> <%= ff.label :_destroy, 'delete' %> </td>
                 <!-- <td> <a href='#' class='btn2 removeRow2'>X</a> </td> -->
             </tr>
-
 
         <% end %>
 
@@ -34,8 +34,9 @@
         <br>
 
         <%= f.submit "Update columns", class: "btn btn-sm btn-primary", :name => "update_columns" %>
-        <%= f.submit "Delete columns", class: "btn btn-sm btn-primary", name: "remove_columns" %>
+        <%= f.submit "Delete columns", class: "btn btn-sm btn-primary", name: "delete_columns" %>
         <%= link_to 'Cancel', kanban_path, class: "btn btn-sm btn-primary" %>
+
 
     <% end -%>
 

@@ -5,8 +5,13 @@ class Organization < ActiveRecord::Base
 
     has_many :milestones
 
+    accepts_nested_attributes_for :milestones, :allow_destroy => true
+
+
+
     def org_delete_from_hstore(key)
         delete_from_hstore_string = %(progress = delete("progress", ?))
         self.class.where(id: self.id).update_all([delete_from_hstore_string, key])
     end
+
 end
