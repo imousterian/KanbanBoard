@@ -7,13 +7,12 @@
     </td>
 </tr>
 
-<%= f.fields_for :settings do |d| %>
-    <% @kanban.settings.try(:each) do |key,value| %>
+    <% @kanban_milestones.try(:each) do |value| %>
 
         <tr>
-            <th> <%= d.label value %> </th>
-            <td> <%= d.text_field key, :value => value %> </td>
-            <td> <%= check_box_tag "cols[#{key}]" %> </td>
+            <th> <%= value.label :kms_name %> </th>
+            <td> <%= value.text_field :kms_name, value %> </td>
+            <td> <%= check_box_tag "cols[#{value.kms_name}]" %> </td>
             <!-- <td> <a href='#' class='btn2 removeRow2'>X</a> </td> -->
         </tr>
 
@@ -26,4 +25,3 @@
     <%= f.submit "Delete selected", class: "btn btn-sm btn-primary", name: "remove_columns" %>
     <%= link_to 'Cancel', kanban_path, class: "btn btn-sm btn-primary" %>
 
-<%- end -%>

@@ -2,15 +2,17 @@ class Kanban < ActiveRecord::Base
     include KanbansHelper
     # include OrganizationsHelper
 
-    validates :name, presence: true
+    # validates :name, presence: true
 
     has_and_belongs_to_many :organizations
 
     has_many :kanban_milestones
 
+    accepts_nested_attributes_for :kanban_milestones, :allow_destroy => true #, :reject_if => :all_blank
+
     def create_kanban_milestone(id)
         @kms = KanbanMilestone.new
-        @kms.kms_name = "col_1"
+        @kms.kms_name = "col_" + id.to_s
         @kms.kanban_id = id
         @kms.save
     end

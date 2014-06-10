@@ -7,8 +7,8 @@
             <tr>
                 <th> <%= link_to @kanban.name, edit_kanban_path %> </th>
 
-                <% @kanban.settings.try(:each) do |key,value| %>
-                    <th> <%= value %> </th>
+                <% @kanban.kanban_milestones.each do |name| %>
+                    <th> <%= name.kms_name %> </th>
                 <% end %>
 
                 <th> <a href = '<%=link_to @kanban %>' data-target="#test_modal" data-toggle="modal" style="width:100%" >

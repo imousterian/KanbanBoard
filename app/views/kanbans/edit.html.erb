@@ -2,11 +2,41 @@
 
     <h3> Yay, let's edit the kanban </h3><br>
 
-    <%= form_for @kanban, :url => {:action => "update"}, :html => { :class => :form } do |f| %>
+    <%= form_for @kanban, :url => {:action => "update"} do |f| %>
 
-        <%= render :partial => "form", :locals => {:f => f} %>
+        <% @kanban.errors.full_messages.each do |msg| %>
+            <p> <%= msg %> </p>
+        <% end %>
 
-    <% end -%>
+        <table id="kanbans"><tr>
+            <th>
+                <%= f.label @kanban.name%>
+            </th>
+            <td>
+                <%= f.text_field :name %>
+            </td>
+        </tr>
+
+            <%= f.fields_for :kanban_milestones do |ff| %>
+
+                    <tr>
+                        <th> <%= ff.label :kms_name %> </th>
+                        <td> <%= ff.text_field :kms_name%> </td>
+                        <td> <%= check_box_tag "cols[#{:kms_name}]" %> </td>
+                        <!-- <td> <a href='#' class='btn2 removeRow2'>X</a> </td> -->
+                    </tr>
+
+
+            <% end %>
+
+        </table>
+
+            <br>
+            <%= f.submit "Save changes", class: "btn btn-sm btn-primary" %>
+            <%= f.submit "Delete selected", class: "btn btn-sm btn-primary", name: "remove_columns" %>
+            <%= link_to 'Cancel', kanban_path, class: "btn btn-sm btn-primary" %>
+
+            <% end -%>
 
 </div>
 

@@ -9,7 +9,7 @@ class KanbansController < ApplicationController
 
     def new
         @kanban = Kanban.new
-
+        @kanban.kanban_milestones.build
     end
 
     def edit
@@ -27,19 +27,15 @@ class KanbansController < ApplicationController
 
     def default
         @kanban = Kanban.new
-        @kanban.name = "Rename me! Kanban # " + (Kanban.count + 1).to_s
-
-        # logger.debug " count #{Kanban.count}"
         # @kanban.kanban_milestones.build
-        # 1.upto(2) do |i|
-
-        #     # @kanban.columnholder = "col_" + i.to_s
-        #     # @kanban.progress_settings(@kanban.columnholder, @kanban.columnholder)
-        # end
+        # @kanban.kanban_milestones.build
+        2.times { @kanban.kanban_milestones.build }
+        counter = Kanban.count + 1
+        @kanban.name = "Rename me! Kanban # " + counter.to_s
 
         @kanban.save
 
-        @kanban.create_kanban_milestone(@kanban.id)
+        # @kanban.create_kanban_milestone(@kanban.id)
 
         redirect_to kanbans_path
     end
@@ -47,7 +43,8 @@ class KanbansController < ApplicationController
     def create
 
         @kanban = Kanban.new(kanban_params)
-        @kanban.progress_settings(@kanban.columnholder, @kanban.columnholder)
+        @kanban.kanban_milestones.build
+        # @kanban.progress_settings(@kanban.columnholder, @kanban.columnholder)
         if @kanban.save
             flash[:success] = "Welcome to the Kanban App!"
             redirect_to kanbans_path
@@ -57,42 +54,34 @@ class KanbansController < ApplicationController
 
     end
 
-    # def delete
-    #     @kanban = Kanban.find(params[:id])
-    #     # @kanban.destroy(params[:to_delete])
-    #     # @kanban.destroy
-    #     @kanban[:settings].delete(params[:to_delete])
-    #     logger.debug " test #{ @kanban[params[:to_delete]] }"
-    #     # redirect_to kanbans_path(@kanban)
-    #     # params[:user][:membership_attributes].delete(:"expiration_date(3i)")
-    # end
-
     def update
 
         @kanban = Kanban.find(params[:id])
 
         if @kanban.update_attributes(kanban_params)
 
-            if params[:commit] == 'Save'
-                @kanban.progress_settings(@kanban.create_key_name, @kanban.columnholder)
-                @kanban.columnholder = nil
-            end
+            logger.debug " #{kanban_params} "
 
-            if params[:remove_columns]
-                if !params[:cols].empty?
-                    key_to_delete = params[:cols]
-                    key_to_delete.each_key do |k|
+            # if params[:commit] == 'Save'
+            #     @kanban.progress_settings(@kanban.create_key_name, @kanban.columnholder)
+            #     @kanban.columnholder = nil
+            # end
 
-                        @kanban.delete_from_hstore(k)
+            # if params[:remove_columns]
+            #     if !params[:cols].empty?
+            #         key_to_delete = params[:cols]
+            #         key_to_delete.each_key do |k|
 
-                        @kanban.organizations.each do |org|
-                            org.org_delete_from_hstore(k)
-                        end
-                    end
-                end
-            end
+            #             @kanban.delete_from_hstore(k)
 
-            update_your_org(@kanban)
+            #             @kanban.organizations.each do |org|
+            #                 org.org_delete_from_hstore(k)
+            #             end
+            #         end
+            #     end
+            # end
+
+            # update_your_org(@kanban)
 
             @kanban.save
 
