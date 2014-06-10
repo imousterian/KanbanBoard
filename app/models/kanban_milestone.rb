@@ -3,4 +3,6 @@ class KanbanMilestone < ActiveRecord::Base
 
     has_one :milestone
 
+    belongs_to :kanban
+
 end

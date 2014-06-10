@@ -3,8 +3,8 @@ class KanbansController < ApplicationController
 
 
     def index
-        # @kanbans = Kanban.all
-        @kanbans = Kanban.order(:created_at => :desc)
+        @kanbans = Kanban.all
+        # @kanbans = Kanban.order(:created_at => :desc)
     end
 
     def new
@@ -29,12 +29,18 @@ class KanbansController < ApplicationController
         @kanban = Kanban.new
         @kanban.name = "Rename me! Kanban # " + (Kanban.count + 1).to_s
 
-        1.upto(2) do |i|
-            @kanban.columnholder = "col_" + i.to_s
-            @kanban.progress_settings(@kanban.columnholder, @kanban.columnholder)
-        end
+        # logger.debug " count #{Kanban.count}"
+        # @kanban.kanban_milestones.build
+        # 1.upto(2) do |i|
+
+        #     # @kanban.columnholder = "col_" + i.to_s
+        #     # @kanban.progress_settings(@kanban.columnholder, @kanban.columnholder)
+        # end
 
         @kanban.save
+
+        @kanban.create_kanban_milestone(@kanban.id)
+
         redirect_to kanbans_path
     end
 
@@ -101,8 +107,9 @@ class KanbansController < ApplicationController
 
     private
         def kanban_params
-            params.require(:kanban).permit! #(:name, :columnholder, :settings)
+            # params.require(:kanban).permit! #(:name, :columnholder, :settings)
             # params.require(:kanban).permit(:settings, :name, :columnholder)
+            params.require(:kanban).permit(:name)
 
         end
 
