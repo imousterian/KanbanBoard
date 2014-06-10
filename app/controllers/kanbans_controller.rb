@@ -27,9 +27,14 @@ class KanbansController < ApplicationController
 
     def default
         @kanban = Kanban.new
-        # @kanban.kanban_milestones.build
-        # @kanban.kanban_milestones.build
-        2.times { @kanban.kanban_milestones.build }
+        # 2.times { @kanban.kanban_milestones.build }
+
+        @kanban.kanban_milestones.build
+
+        @kanban.kanban_milestones.each_with_index do |i, index|
+            i.kms_name = "col_" + (index+1).to_s
+        end
+
         counter = Kanban.count + 1
         @kanban.name = "Rename me! Kanban # " + counter.to_s
 
@@ -57,6 +62,13 @@ class KanbansController < ApplicationController
     def update
 
         @kanban = Kanban.find(params[:id])
+
+        if params[:update_columns]
+            # @kanban.kanban_milestones.each do |i|
+
+            # end
+            logger.debug " params: #{params[:update_attributes]} "
+        end
 
         if @kanban.update_attributes(kanban_params)
 
@@ -98,7 +110,7 @@ class KanbansController < ApplicationController
         def kanban_params
             # params.require(:kanban).permit! #(:name, :columnholder, :settings)
             # params.require(:kanban).permit(:settings, :name, :columnholder)
-            params.require(:kanban).permit(:name)
+            params.require(:kanban).permit(:name, kanban_milestones_attributes: [:id, :kms_name])
 
         end
 

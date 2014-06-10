@@ -5,6 +5,4 @@ class KanbanMilestone < ActiveRecord::Base
 
     belongs_to :kanban
 
-
-
 end
