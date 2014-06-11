@@ -24,9 +24,9 @@
 
                             <%= form_for(this_org) do |f| %>
 
-                                    <% this_org.progress.try(:each) do |key,value| %>
+                                    <%= f.fields_for :milestones do |ms| %>
 
-                                        <td class="dropdown" style="background-color: <%= value %> " >
+                                        <td class="dropdown" style="background-color: <%= this_org.milestones[ms.options[:child_index]].milestone_value %> " >
 
                                             <a href="#" data-toggle="dropdown" class="dropdown-toggle extended">  <b class="caret caret-right" ></b> </a>
 
@@ -34,30 +34,30 @@
 
                                                     <li role="presentation">
                                                         <p id='whitecolored' class="colored" >
-                                                            <%= f.radio_button :org_columnholder, [key, "#FFFFFF"], :onclick => "this.form.submit();" %>
+                                                            <%= ms.radio_button :milestone_value, "#FFFFFF", :onclick => "this.form.submit();" %>
                                                         </p>
                                                     </li>
 
                                                     <li role="presentation">
                                                         <p id='greycolored' class="colored" >
-                                                            <%= f.radio_button :org_columnholder, [key, "#F8F8F8"], :onclick => "this.form.submit();" %>
+                                                            <%= ms.radio_button :milestone_value, "#F8F8F8", :onclick => "this.form.submit();" %>
                                                         </p>
                                                     </li>
 
                                                     <li role="presentation">
                                                         <p id='greencolored' class="colored" >
-                                                            <%= f.radio_button :org_columnholder, [key, "#66FF66"], :onclick => "this.form.submit();" %>
+                                                            <%= ms.radio_button :milestone_value, "#66FF66", :onclick => "this.form.submit();" %>
                                                         </p>
                                                     </li>
 
                                                     <li role="presentation">
                                                         <p id='yelcolored' class='colored'>
-                                                            <%= f.radio_button :org_columnholder, [key, "#FFFF33"], :onclick => "this.form.submit();" %>
+                                                            <%= ms.radio_button :milestone_value, "#FFFF33", :onclick => "this.form.submit();" %>
                                                         </p>
                                                     </li>
                                                     <li role="presentation">
                                                         <p id='redcolored' class='colored'>
-                                                            <%= f.radio_button :org_columnholder, [key, "#FF0000"], :onclick => "this.form.submit();"%>
+                                                            <%= ms.radio_button :milestone_value, "#FF0000", :onclick => "this.form.submit();"%>
                                                         </p>
                                                     </li>
                                             </ul>
