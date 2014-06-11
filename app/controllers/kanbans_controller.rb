@@ -22,6 +22,8 @@ class KanbansController < ApplicationController
         @kanban = Kanban.find(params[:id])
         session[:current_kanban] = @kanban
 
+        logger.debug " show: this kanban has #{@kanban.kanban_milestones.count}"
+
     end
 
 
@@ -40,26 +42,30 @@ class KanbansController < ApplicationController
 
         @kanban.save
 
+        logger.debug " this kanban has #{@kanban.kanban_milestones.count}"
+
         redirect_to kanbans_path
     end
 
     def create
 
-        @kanban = Kanban.new(kanban_params)
-        @kanban.kanban_milestones.build
-        # @kanban.progress_settings(@kanban.columnholder, @kanban.columnholder)
-        if @kanban.save
-            flash[:success] = "Welcome to the Kanban App!"
-            redirect_to kanbans_path
-        else
-            render '/kanbans/new'
-        end
+        # @kanban = Kanban.new(kanban_params)
+        # @kanban.kanban_milestones.build
+        # # @kanban.progress_settings(@kanban.columnholder, @kanban.columnholder)
+        # if @kanban.save
+        #     flash[:success] = "Welcome to the Kanban App!"
+        #     redirect_to kanbans_path
+        # else
+        #     render '/kanbans/new'
+        # end
 
     end
 
     def update
 
         @kanban = Kanban.find(params[:id])
+
+        logger.debug " update: this kanban has #{@kanban.kanban_milestones.count}"
 
         if @kanban.update_attributes(kanban_params)
 
@@ -119,7 +125,7 @@ class KanbansController < ApplicationController
         def kanban_params
             # params.require(:kanban).permit! #(:name, :columnholder, :settings)
             # params.require(:kanban).permit(:settings, :name, :columnholder)
-            params.require(:kanban).permit(:name, kanban_milestones_attributes: [:id, :kms_name])
+            params.require(:kanban).permit(:name, kanban_milestones_attributes: [:id, :kms_name, :_destroy] )
 
         end
 

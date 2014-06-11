@@ -2,28 +2,37 @@
 
 
 
-    <!-- <li role="presentation" > <a id='whitecolored' role="menuitem" tabindex="-1" href = '#' > White </a></li>
-    <li role="presentation"> <a id='greycolored' role="menuitem" tabindex="-1" href="#" > Grey </a></li>
-    <li role="presentation"> <a id='greencolored' role="menuitem" tabindex="-1" href="#" > Green </a></li>
-    <li role="presentation"> <a id='yelcolored' role="menuitem" tabindex="-1" href="#" > Yellow </a></li> -->
+
+
+                            <li role="presentation">
+                                <p id='whitecolored' class="colored" >
+                                    <%= f.radio_button :milestone_value, "#FFFFFF", :onclick => "this.form.submit();" %>
+                                </p>
+                            </li>
+
+                            <li role="presentation">
+                                <p id='greycolored' class="colored" >
+                                    <%= f.radio_button :milestone_value, "#F8F8F8", :onclick => "this.form.submit();" %>
+                                </p>
+                            </li>
+
+                                                    <li role="presentation">
+                                                        <p id='greencolored' class="colored" >
+                                                            <%= f.radio_button :milestone_value, "#66FF66", :onclick => "this.form.submit();" %>
+                                                        </p>
+                                                    </li>
+
+                                                    <li role="presentation">
+                                                        <p id='yelcolored' class='colored'>
+                                                            <%= f.radio_button :milestone_value, "#FFFF33", :onclick => "this.form.submit();" %>
+                                                        </p>
+                                                    </li>
+                                                    <li role="presentation">
+                                                        <p id='redcolored' class='colored'>
+                                                            <%= f.radio_button :milestone_value, "#FF0000", :onclick => "this.form.submit();" %>
+                                                        </p>
+                                                    </li>
 
 
 
-    <li role="presentation">
-        <p id='greencolored' class="colored" >
-            <%= f.radio_button :org_columnholder, "greencolored", :onclick => "this.form.submit();" %>
-        </p>
-    </li>
-
-    <li role="presentation">
-        <p id='yelcolored' class='colored'>
-            <%= f.radio_button :org_columnholder, "yelcolored", :onclick => "this.form.submit();" %>
-        </p>
-    </li>
-
-    <li role="presentation">
-        <p id='redcolored' class='colored'>
-            <%= f.radio_button :org_columnholder, "redcolored", :onclick => "this.form.submit();"  %>
-        </p>
-    </li>
 

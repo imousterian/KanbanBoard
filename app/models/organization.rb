@@ -3,9 +3,9 @@ class Organization < ActiveRecord::Base
     # include KanbansHelper
     has_and_belongs_to_many :kanbans
 
-    has_many :milestones
+    has_many :milestones, -> {order('id')} # allows to persist that the database records were always sorted by id?
 
-    accepts_nested_attributes_for :milestones, :allow_destroy => true
+    accepts_nested_attributes_for :milestones, :allow_destroy => true, :update_only => true
 
 
 

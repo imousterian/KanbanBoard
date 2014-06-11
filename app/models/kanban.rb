@@ -8,14 +8,14 @@ class Kanban < ActiveRecord::Base
 
     has_many :kanban_milestones
 
-    accepts_nested_attributes_for :kanban_milestones, :allow_destroy => true #, :reject_if => :all_blank
+    accepts_nested_attributes_for :kanban_milestones, :allow_destroy => true
 
-    def create_kanban_milestone(id)
-        @kms = KanbanMilestone.new
-        @kms.kms_name = "col_" + id.to_s
-        @kms.kanban_id = id
-        @kms.save
-    end
+    # def create_kanban_milestone(id)
+    #     @kms = KanbanMilestone.new
+    #     @kms.kms_name = "col_" + id.to_s
+    #     @kms.kanban_id = id
+    #     @kms.save
+    # end
 
     # def delete_from_hstore(key)
     #     delete_from_hstore_string = %(settings = delete("settings", ?))
