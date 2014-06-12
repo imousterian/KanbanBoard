@@ -4,7 +4,7 @@ class KanbansController < ApplicationController
 
     def index
         @kanbans = Kanban.all
-        # @kanbans = Kanban.order(:created_at => :desc)
+        @kanbans = Kanban.order(:created_at => :desc)
     end
 
     def new
@@ -33,14 +33,22 @@ class KanbansController < ApplicationController
 
         @kanban.kanban_milestones.build
 
+        logger.debug ' build milesstones'
+
         @kanban.kanban_milestones.each_with_index do |i, index|
             i.kms_name = "col_" + (index+1).to_s
         end
 
+        logger.debug " named milestones "
+
         counter = Kanban.count + 1
         @kanban.name = "Rename me! Kanban # " + counter.to_s
 
+        logger.debug " named kanban "
+
         @kanban.save
+
+        logger.debug " saved kanban "
 
         logger.debug " this kanban has #{@kanban.kanban_milestones.count}"
 
