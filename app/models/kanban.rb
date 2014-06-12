@@ -3,7 +3,7 @@ class Kanban < ActiveRecord::Base
     # include OrganizationsHelper
 
     # validates :name, presence: true
-    validates :name, :presence => true
+    validates :name, :presence => {:message => 'cannot be empty'}, length: {in: 2..20}
 
     has_and_belongs_to_many :organizations
 

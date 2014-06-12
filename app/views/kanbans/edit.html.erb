@@ -1,40 +1,36 @@
 
-<div class="container">
+<div class="container container-index">
 
-    <h3> Yay, let's edit the kanban </h3><br>
+    <h3> Yay, let's edit the kanban </h3>
 
     <%= form_for @kanban, :url => {:action => "update"} do |f| %>
 
         <%= render 'shared/messages', object: f.object %>
 
-        <table id="kanbans"><tr>
-            <th>
-                Name: <%= f.label @kanban.name if not @kanban.name.empty?%>
-            </th>
-            <td>
-                <%= f.text_field :name %>
-            </td>
-        </tr>
+        <table id="kanban_edit">
+                <tr>
+                    <th> Name: <%= f.label @kanban.name if not @kanban.name.empty?%> </th>
+                    <td> <%= f.text_field :name %> </td>
+                </tr>
 
-        <%= f.fields_for :kanban_milestones do |ff| %>
+                <%= f.fields_for :kanban_milestones do |ff| %>
 
-            <tr>
-                <th> <%= ff.label @kanban.kanban_milestones[ff.options[:child_index]].kms_name %> </th>
-                <td> <%= ff.text_field :kms_name %> </td>
-                <td> <%= ff.check_box :_destroy %> </td>
-                <td> <%= ff.label :_destroy, 'delete' %> </td>
-            </tr>
+                <tr>
+                    <th> <%= ff.label @kanban.kanban_milestones[ff.options[:child_index]].kms_name %> </th>
+                    <td> <%= ff.text_field :kms_name %> </td>
+                    <td> <%= ff.check_box :_destroy %> </td>
+                    <td> <div class='labelled'> <%= ff.label :_destroy, 'delete' %> </div></td>
+                </tr>
 
-        <% end %>
+                <% end %>
 
         </table>
 
-        <br>
-
-        <%= f.submit "Update columns", class: "btn btn-sm btn-primary", :name => "update_columns" %>
-        <%= f.submit "Delete columns", class: "btn btn-sm btn-primary", name: "delete_columns" %>
-        <%= link_to 'Cancel', kanban_path, class: "btn btn-sm btn-primary" %>
-
+        <p class = "line_edit" >
+                <%= f.submit "Update columns", class: "btn btn-sm btn-primary", :name => "update_columns" %>
+                <%= f.submit "Delete columns", class: "btn btn-sm btn-primary", name: "delete_columns" %>
+                <%= link_to 'Cancel', kanban_path, class: "btn btn-sm btn-primary" %>
+        </p>
 
     <% end -%>
 
