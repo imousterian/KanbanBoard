@@ -188,7 +188,11 @@ table#kanban.for-plus {
 }
 
 
-
+#notice, #warning, .error {
+  background: rosybrown;
+  margin: 1em 0;
+  padding: 4px;
+}
 
 
 

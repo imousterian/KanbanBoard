@@ -124,8 +124,11 @@ class KanbansController < ApplicationController
 
                 redirect_to @kanban
         else
-                flash[:error] = "boo"
-                redirect_to kanbans_path
+            flash[:error] = "boo"
+            # redirect_to @kanban
+            # redirect_to kanban_path(@kanban)
+            # render edit_kanban_path
+            render 'kanbans/edit'
         end
 
 

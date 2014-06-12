@@ -1,16 +1,15 @@
+
 <div class="container">
 
     <h3> Yay, let's edit the kanban </h3><br>
 
     <%= form_for @kanban, :url => {:action => "update"} do |f| %>
 
-        <% @kanban.errors.full_messages.each do |msg| %>
-            <p> <%= msg %> </p>
-        <% end %>
+        <%= render 'shared/messages', object: f.object %>
 
         <table id="kanbans"><tr>
             <th>
-                <%= f.label @kanban.name%>
+                Name: <%= f.label @kanban.name if not @kanban.name.empty?%>
             </th>
             <td>
                 <%= f.text_field :name %>
