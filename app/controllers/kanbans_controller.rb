@@ -9,7 +9,7 @@ class KanbansController < ApplicationController
 
     def new
         @kanban = Kanban.new
-        @kanban.kanban_milestones.build
+        # @kanban.kanban_milestones.build
     end
 
     def edit
@@ -72,8 +72,6 @@ class KanbansController < ApplicationController
 
             logger.debug " test: #{kanban_params}"
 
-
-
             if params[:delete_columns]
                 to_delete = params[:kanban][:kanban_milestones_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
                 KanbanMilestone.delete(to_delete)
@@ -87,6 +85,25 @@ class KanbansController < ApplicationController
                 #   end
                 # end
                 # @kanban.kanban_milestones.build
+                logger.debug " params add column #{ params[:kanban][:kanban_milestones_attributes] }"
+                value_to_update = params[:kanban][:kanban_milestones_attributes].values[0].values[0]
+                logger.debug " keys: #{params[:kanban]} "
+
+                organizations = @kanban.organizations
+                # logger.debug " orgs: #{xyz.count} "
+                organizations.each do |each_organization|
+                    # u.milestones.build
+                    @milestone = Milestone.new
+                    @milestone.milestone_key = value_to_update
+                    @milestone.milestone_value = "default"
+                    @milestone.kanban_milestone_id = @kanban.kanban_milestones.last.id
+
+                    @milestone.save
+                    each_organization.milestones << @milestone
+                end
+
+                # test: {"kanban_milestones_attributes"=>{"0"=>{"kms_name"=>"er"}}}
+
             end
 
                 @kanban.save
@@ -94,12 +111,16 @@ class KanbansController < ApplicationController
                 @kanban.kanban_milestones.each do |o|
                 # logger.debug " kanban milestone #{o}"
                 # logger.debug " kanban milestone #{o.milestones}"
-                o.milestones.each do |p|
-                    # logger.debug " kanban milestone #{p.id} #{p.milestone_value}"
-                    p.milestone_key = o.kms_name
-                    p.save
+                    o.milestones.each do |p|
+                        # logger.debug " kanban milestone #{p.id} #{p.milestone_value}"
+                        p.milestone_key = o.kms_name
+                        # logger.debug " checking whtehr it is nil #{p.kanban_milestone_id}"
+                        # if p.kanban_milestone_id.nil?
+                        #     p.kanban_milestone_id = o.id
+                        # end
+                        p.save
+                    end
                 end
-            end
 
                 redirect_to @kanban
         else

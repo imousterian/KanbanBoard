@@ -89,6 +89,7 @@ class OrganizationsController < ApplicationController
   end
 
   def update
+
         current_kanban = session[:current_kanban]
 
         @org = Organization.find(params[:id])
@@ -136,7 +137,7 @@ class OrganizationsController < ApplicationController
         end
 
         def mile_params
-            params.require(:milestone).permit!
+            # params.require(:milestone).permit!
         end
 
 
