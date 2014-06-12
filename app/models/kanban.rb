@@ -6,16 +6,9 @@ class Kanban < ActiveRecord::Base
 
     has_and_belongs_to_many :organizations
 
-    has_many :kanban_milestones
+    has_many :kanban_milestones, -> {order('created_at')} # allows to persist that the database records were always sorted by created_at?
 
     accepts_nested_attributes_for :kanban_milestones, :allow_destroy => true
-
-    # def create_kanban_milestone(id)
-    #     @kms = KanbanMilestone.new
-    #     @kms.kms_name = "col_" + id.to_s
-    #     @kms.kanban_id = id
-    #     @kms.save
-    # end
 
     # def delete_from_hstore(key)
     #     delete_from_hstore_string = %(settings = delete("settings", ?))

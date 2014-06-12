@@ -65,11 +65,14 @@ class KanbansController < ApplicationController
 
         @kanban = Kanban.find(params[:id])
 
-        logger.debug " update: this kanban has #{@kanban.kanban_milestones.count}"
+        # logger.debug " update: this kanban has #{@kanban.kanban_milestones.count}"
+
 
         if @kanban.update_attributes(kanban_params)
 
             logger.debug " test: #{kanban_params}"
+
+
 
             if params[:delete_columns]
                 to_delete = params[:kanban][:kanban_milestones_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
@@ -87,6 +90,16 @@ class KanbansController < ApplicationController
             end
 
                 @kanban.save
+
+                @kanban.kanban_milestones.each do |o|
+                # logger.debug " kanban milestone #{o}"
+                # logger.debug " kanban milestone #{o.milestones}"
+                o.milestones.each do |p|
+                    # logger.debug " kanban milestone #{p.id} #{p.milestone_value}"
+                    p.milestone_key = o.kms_name
+                    p.save
+                end
+            end
 
                 redirect_to @kanban
         else
