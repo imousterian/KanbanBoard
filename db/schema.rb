@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140610012951) do
   create_table "organizations", force: true do |t|
     t.string   "name"
     t.hstore   "progress"
+    t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "org_columnholder"

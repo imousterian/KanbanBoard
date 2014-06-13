@@ -21,12 +21,11 @@
                     <tr>
                         <%= form_for this_org do |f| %>
 
-                            <td> <%= f.object.name %> </td>
+                            <td> <%= link_to f.object.name, edit_organization_path(this_org) %> </td>
 
                             <%= f.fields_for :milestones do |ms| %>
 
                                 <td class="dropdown" style="background-color: <%= this_org.milestones[ms.index].milestone_value %>" >
-                                    <%= this_org.milestones[ms.index].id %>
 
                                     <a href="#" data-toggle="dropdown" class="dropdown-toggle extended"><b class="caret caret-right" ></b> </a>
                                         <ul class="dropdown-menu dropdown-menu-left" role="menu" >

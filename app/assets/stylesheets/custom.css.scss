@@ -171,6 +171,7 @@ table#kanban_edit{
 @media (min-width: 768px) {
   .container-index {
     max-width: 730px;
+    // background-color: red;
   }
 }
 
@@ -208,4 +209,18 @@ div.labelled{
      border-top: 4px solid transparent;
 }
 
+/* forms .uneditable-input*/
+// input, textarea, select {
+//     border: 1px solid #bbb;
+//     width: 100%;
+//     margin-bottom: 5px;
+//     margin-top: 5px;
+// }
+
+textarea, .textfield {
+    border: 1px solid #bbb;
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
 

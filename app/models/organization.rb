@@ -1,6 +1,9 @@
 class Organization < ActiveRecord::Base
     include OrganizationsHelper
     # include KanbansHelper
+
+    validates :name, :presence => {:message => 'cannot be empty'}
+
     has_and_belongs_to_many :kanbans
 
     has_many :milestones, -> {order('id')} # allows to persist that the database records were always sorted by id?

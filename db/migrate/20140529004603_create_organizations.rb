@@ -3,6 +3,7 @@ class CreateOrganizations < ActiveRecord::Migration
     create_table :organizations do |t|
       t.string :name
       t.hstore :progress
+      t.string :content
 
       t.timestamps
     end
