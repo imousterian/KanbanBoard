@@ -1,9 +1,16 @@
 
 // jQuery(function($) {
 // jQuery(document).ready(function($)
+    $(function() {
+      setTimeout(function(){
+        $('.alert').slideUp(500);
+      }, 1000);
+    });
 $(function()
 {
     $('.tag-tooltip').tooltip();
+
+
     // paint = function(element, backgroundColor){
     //     element.style.backgroundColor = backgroundColor;
     //     // element.style.color = textColor;

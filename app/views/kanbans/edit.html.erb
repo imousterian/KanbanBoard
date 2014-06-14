@@ -8,20 +8,30 @@
         <%= render 'shared/messages', object: f.object %>
 
         <table id="kanban_edit">
+            <div class="form-group has-error">
                 <tr>
-                    <th> Name: <%= f.label @kanban.name if not @kanban.name.empty?%> </th>
-                    <td> <%= f.text_field :name %> </td>
+                    <th> Name: &nbsp;&nbsp;&nbsp; <%= f.label @kanban.name if not @kanban.name.empty? %>
+                    </th>
+
+                    <td> <%= f.text_field :name, class: "form-control" %>
+                    </td>
+
                 </tr>
 
                 <%= f.fields_for :kanban_milestones do |ff| %>
 
                 <tr>
-                    <th> <%= ff.label @kanban.kanban_milestones[ff.index].kms_name if not @kanban.kanban_milestones[ff.index].kms_name.empty?%> </th>
-                    <td> <%= ff.text_field :kms_name %> </td>
-                    <td> <%= ff.check_box :_destroy %> </td>
-                    <td> <div class='labelled'> <%= ff.label :_destroy, 'delete' %> </div></td>
-                </tr>
 
+                        <th> Column: &nbsp;<%= ff.label @kanban.kanban_milestones[ff.index].kms_name if not @kanban.kanban_milestones[ff.index].kms_name.empty?%> </th>
+                        <td> <%= ff.text_field :kms_name, class: "form-control" %>
+                            <%= hidden_field_tag :kms_name, :kms_name %>
+                        </td>
+                        <td> <%= ff.check_box :_destroy %> </td>
+                        <td> <div class='labelled'> <%= ff.label :_destroy, 'delete' %> </div></td>
+
+
+                </tr>
+                </div>
                 <% end %>
 
         </table>
@@ -29,10 +39,10 @@
         <p class = "line_edit" >
                 <%= f.submit "Update columns", class: "btn btn-sm btn-primary", :name => "update_columns" %>
                 <%= f.submit "Delete columns", class: "btn btn-sm btn-primary", name: "delete_columns" %>
-                <%= link_to 'Cancel', kanban_path, class: "btn btn-sm btn-primary" %>
+                <%= link_to 'Cancel', kanban_path, class: "btn btn-sm btn-primary", "data-no-turbolink" => true %>
         </p>
 
-    <% end -%>
+    <% end %>
 
 </div>
 

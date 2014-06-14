@@ -13,65 +13,44 @@ class OrganizationsController < ApplicationController
 
       def create
 
-            current_kanban = session[:current_kanban]
-
             @org = Organization.new(org_params)
 
-            l = current_kanban.kanban_milestones.count
-
-            # 1.upto(l) {|o| @org.milestones.build(params[:kanban_milestones]) }
-            # 1.upto(l) {|o| @org.milestones.build}
-
-            # current_kanban.kanban_milestones.each { |i| @org.milestones.build(params[:current_kanban]) }
-
-            current_kanban.kanban_milestones.each_entry do |o|
-                logger.debug " rest #{o.id} "
-            end
-
-            0.upto(l-1) do |i|
-                @milestone = Milestone.new
-                @milestone.milestone_key = current_kanban.kanban_milestones[i].kms_name
-                @milestone.milestone_value = "default"
-                @milestone.kanban_milestone_id = current_kanban.kanban_milestones[i].id
-                # @milestone.id = i
-                @milestone.save
-                @org.milestones << @milestone
-            end
-
-
-                # @org.milestones.attributes = current_kanban.kanban_milestones.attributes
-
-                # @org.milestones.each_with_index do |j, index|
-                #     j.milestone_key = i.kms_name
-                #     j.milestone_value = "default"
-                #     j.kanban_milestone_id = i.id
-                # end
-
-                # @milestone = Milestone.new
-                # @milestone.milestone_key = i.kms_name
-                # @milestone.milestone_value = "default"
-                # @milestone.kanban_milestone_id = i.id
-                # # @milestone.save
-                # @org.milestones << @milestone
-            # end
+            current_kanban = session[:current_kanban]
 
             @org.kanbans << current_kanban
 
+            current_kanban.kanban_milestones.find_each do |p|
+                @org.milestones.build(
+                        :kanban_milestone_id => p.id,
+                        :milestone_key => p.kms_name
+                    ) unless p.id.nil?
+            end
+
+
+            # @org.milestones.update
+
+            # current_kanban.kanban_milestones.each { |i| @org.milestones.build(params[:current_kanban]) }
+
+            # l = current_kanban.kanban_milestones.count
+            # 0.upto(l-1) do |i|
+            #     @milestone = Milestone.new
+            #     @milestone.milestone_key = current_kanban.kanban_milestones[i].kms_name
+            #     @milestone.milestone_value = "default"
+            #     @milestone.kanban_milestone_id = current_kanban.kanban_milestones[i].id
+
+            #     @milestone.save
+            #     @org.milestones << @milestone
+            # end
+
+
+
             if @org.save
-                flash[:success] = "Welcome to the Kanban App!"
+                # flash[:success] = "Welcome to the Kanban App!"
                 redirect_to current_kanban
             else
                 render new_organization_path
             end
 
-            # # @org.progress = current_kanban.settings
-            # @org.kanbans << current_kanban
-            # if @org.save
-            #     flash[:success] = "Welcome to the Kanban App!"
-            #     redirect_to current_kanban
-            # else
-            #     render '/organizations/new'
-            # end
       end
 
   def show
@@ -89,9 +68,13 @@ class OrganizationsController < ApplicationController
 
         @org = Organization.find(params[:id])
 
+        logger.debug " uahaggajshdkfjasdkjshd"
+
         if @org.update_attributes(org_params)
             @org.save
             redirect_to current_kanban
+        else
+            render 'organizations/edit'
         end
 
 

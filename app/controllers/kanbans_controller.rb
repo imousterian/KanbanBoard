@@ -33,24 +33,16 @@ class KanbansController < ApplicationController
 
         @kanban.kanban_milestones.build
 
-        logger.debug ' build milesstones'
-
         @kanban.kanban_milestones.each_with_index do |i, index|
             i.kms_name = "col_" + (index+1).to_s
         end
 
-        logger.debug " named milestones "
-
         counter = Kanban.count + 1
         @kanban.name = "Rename me! Kanban # " + counter.to_s
 
-        logger.debug " named kanban "
-
         @kanban.save
 
-        logger.debug " saved kanban "
-
-        logger.debug " this kanban has #{@kanban.kanban_milestones.count}"
+        flash[:success] = "New Kanban created!"
 
         redirect_to kanbans_path
     end
@@ -73,96 +65,47 @@ class KanbansController < ApplicationController
 
         @kanban = Kanban.find(params[:id])
 
-        # logger.debug " update: this kanban has #{@kanban.kanban_milestones.count}"
-
+        logger.debug "!!! @@@@@kanban params@@@@@@ #{kanban_params}"
 
         if @kanban.update_attributes(kanban_params)
+            logger.debug " #{@kanban.attributes} "
 
-            logger.debug " test: #{kanban_params}"
+            # not needed?
+            # if params[:delete_columns]
+            #     to_delete = params[:kanban][:kanban_milestones_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
+            #     KanbanMilestone.delete(to_delete)
+            # end
 
-            if params[:delete_columns]
-                to_delete = params[:kanban][:kanban_milestones_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
-                KanbanMilestone.delete(to_delete)
-                # @kanban.kanban_milestones.collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }.marked_for_destruction? # => true
-                flash[:notice] = "Kanban milestones removed."
-            end
+            @kanban.save
+
             if params[:add_column]
-                # unless params[:kanban][:kanban_milestones_attributes].blank?
-                #   for attribute in params[:kanban][:kanban_milestones_attributes]
-                #     @kanban.kanban_milestones.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
-                #   end
-                # end
-                # @kanban.kanban_milestones.build
-                logger.debug " params add column #{ params[:kanban][:kanban_milestones_attributes] }"
-                value_to_update = params[:kanban][:kanban_milestones_attributes].values[0].values[0]
-                logger.debug " keys: #{params[:kanban]} "
-
-                organizations = @kanban.organizations
-                # logger.debug " orgs: #{xyz.count} "
-                organizations.each do |each_organization|
-                    # u.milestones.build
-                    @milestone = Milestone.new
-                    @milestone.milestone_key = value_to_update
-                    @milestone.milestone_value = "default"
-                    @milestone.kanban_milestone_id = @kanban.kanban_milestones.last.id
-
-                    @milestone.save
-                    each_organization.milestones << @milestone
-                end
-
+                @value_to_update = params[:kanban][:kanban_milestones_attributes].values[0].values[0]
+                @kanban.organizations.each { |i| i.have_milestones_added(@value_to_update, @kanban.kanban_milestones.last.id) }
                 # test: {"kanban_milestones_attributes"=>{"0"=>{"kms_name"=>"er"}}}
-
             end
 
-                @kanban.save
+            # @organizations = @kanban.organizations.find_by(kanban_id: params[:id])
+            # @biz = Milestone.find_or_create_by_name(params[:milestone_key])
+            # @micropost = current_user.microposts.find_by(id: params[:id])
 
-                @kanban.kanban_milestones.each do |o|
-                # logger.debug " kanban milestone #{o}"
-                # logger.debug " kanban milestone #{o.milestones}"
-                    o.milestones.each do |p|
-                        # logger.debug " kanban milestone #{p.id} #{p.milestone_value}"
-                        p.milestone_key = o.kms_name
-                        # logger.debug " checking whtehr it is nil #{p.kanban_milestone_id}"
-                        # if p.kanban_milestone_id.nil?
-                        #     p.kanban_milestone_id = o.id
-                        # end
-                        p.save
-                    end
-                end
+            # logger.debug " #{@biz} "
 
-                redirect_to @kanban
+
+            flash[:success] = "Kanban updated!"
+
+            logger.debug " @@@@@kanban params@@@@@@ #{kanban_params}"
+
+            # updates names of milestones in organizations as per kanban_milestones.
+            # need to do it automatically - change the architecture?
+
+            @kanban.organizations.find_each do |p|
+                p.milestones.find_each { |d| d.update_col_name }
+            end
+
+            redirect_to @kanban and return
         else
-            flash[:error] = "boo"
-            # redirect_to @kanban
-            # redirect_to kanban_path(@kanban)
-            # render edit_kanban_path
             render 'kanbans/edit'
         end
-
-
-
-
-
-            # if params[:commit] == 'Save'
-            #     @kanban.progress_settings(@kanban.create_key_name, @kanban.columnholder)
-            #     @kanban.columnholder = nil
-            # end
-
-            # if params[:remove_columns]
-            #     if !params[:cols].empty?
-            #         key_to_delete = params[:cols]
-            #         key_to_delete.each_key do |k|
-
-            #             @kanban.delete_from_hstore(k)
-
-            #             @kanban.organizations.each do |org|
-            #                 org.org_delete_from_hstore(k)
-            #             end
-            #         end
-            #     end
-            # end
-
-            # update_your_org(@kanban)
 
     end
 

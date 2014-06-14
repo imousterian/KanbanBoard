@@ -2,6 +2,9 @@
 
 <!-- <div class="modal fade" id='modal-edit-fields'> -->
 <%= form_for @kanban do |f| %>
+
+<%= render 'shared/messages', object: f.object %>
+
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
@@ -17,7 +20,6 @@
                     <tr>
                         <th> <%= f.label 'New column:' %> </th>
                         <td> <%= ff.text_field :kms_name %> </td>
-
                     </tr>
                 <% end %>
 
