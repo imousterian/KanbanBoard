@@ -109,6 +109,12 @@ class KanbansController < ApplicationController
             # logger.debug " 1: changed? params #{@kanban.changed} "
             @kanban.save
 
+            # logger.debug " previous changes: #{@kanban.kanban_milestones.previous_changes} "
+
+            @kanban.kanban_milestones.each do |o|
+                logger.debug " previous changes: #{o.previous_changes} "
+            end
+
             # @kanban.kanban_milestones.each do |p|
             #     logger.debug " QQQQQ #{p.attributes} #{p.changed?}"
             # end
