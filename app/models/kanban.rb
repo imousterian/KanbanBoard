@@ -1,8 +1,13 @@
 class Kanban < ActiveRecord::Base
-    include KanbansHelper
+    # include ActiveRecord::Base
+    # include ActiveModel::AttributeMethods
+    # include ActiveModel::Dirty
+    #include KanbansHelper
     # include OrganizationsHelper
 
+    # define_attribute_methods :name#, :kanban_milestones
 
+#
     validates :name, :presence => {:message => 'cannot be empty'}, :if => "name.blank?", length: {in: 2..20}
 
     has_and_belongs_to_many :organizations
@@ -16,5 +21,13 @@ class Kanban < ActiveRecord::Base
     #     self.class.where(id: self.id).update_all([delete_from_hstore_string, key])
     # end
 
+      #   def name
+      #   @name
+      # end
+
+      # def name=(val)
+      #   name_will_change! unless val == @name
+      #   @name = val
+      # end
 
 end

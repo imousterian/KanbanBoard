@@ -24,7 +24,7 @@
 
                         <th> Column: &nbsp;<%= ff.label @kanban.kanban_milestones[ff.index].kms_name if not @kanban.kanban_milestones[ff.index].kms_name.empty?%> </th>
                         <td> <%= ff.text_field :kms_name, class: "form-control" %>
-                            <%= hidden_field_tag :kms_name, :kms_name %>
+                            <%= hidden_field_tag :kms_name, @kanban.kanban_milestones[ff.index].kms_name %>
                         </td>
                         <td> <%= ff.check_box :_destroy %> </td>
                         <td> <div class='labelled'> <%= ff.label :_destroy, 'delete' %> </div></td>

@@ -1,6 +1,6 @@
 class KanbanMilestone < ActiveRecord::Base
 
-    validates :kms_name, :presence => {:message => 'cannot be empty'}#, uniqueness: true
+    validates :kms_name, :presence => {:message => 'cannot be empty'}, :if => :kms_name#, uniqueness: true
 
     validates_uniqueness_of :kms_name, :scope => :kanban_id
 

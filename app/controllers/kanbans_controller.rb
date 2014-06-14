@@ -65,35 +65,69 @@ class KanbansController < ApplicationController
 
         @kanban = Kanban.find(params[:id])
 
-        logger.debug "!!! @@@@@kanban params@@@@@@ #{kanban_params}"
+        # logger.debug " chnaged? params #{params[:kanban][:kanban_milestones_attributes]_changed?} "
+
+        # logger.debug " params[:kanban][:kanban_milestones_attributes] #{params[:kanban][:kanban_milestones_attributes]} "
+        # logger.debug " params[:kanban][:kanban_milestones] #{params[:kanban][:kanban_milestones]} "
+        # logger.debug " @kanban[:kanban_milestones_attributes #{@kanban[:kanban_milestones_attributes]} "
+
+        # logger.debug " 0: changed? params #{params[:kanban_milestones_attributes]} "
+
+        # d = detect_changes
+        # logger.debug " d #{d}"
+
+        # logger.debug " detect_chages #{d}"
+
+        # logger.debug "!!! @@@@@kanban params@@@@@@ #{kanban_params}"
+
+        # lists = params[:kanban][:kanban_milestones_attributes]
+        # # logger.debug " #{kanban.kanban_milestones}"
+
+        # lists.each do |i|
+        #     # logger.debug " #{i[1].has_key?(:id)}   #{i[1].fetch(:kms_name) if i[1].has_key?(:id) == false} "
+        # end
+        # @kanban.kanban_milestones.each do |p|
+        #     # logger.debug " #{p.attributes} #{p.changed?}"
+        # end
 
         if @kanban.update_attributes(kanban_params)
-            logger.debug " #{@kanban.attributes} "
+
+            d1 = detect_changes
+            # logger.debug " d1 #{d1}"
+
+
+            # logger.debug " #{@kanban.attributes} "
+            # logger.debug " 0.5: changed? params #{params[:kanban][:kanban_milestones_attributes]} "
+
+            # logger.debug " before save: @@@@@kanban params@@@@@@ #{kanban_params}"
 
             # not needed?
             # if params[:delete_columns]
             #     to_delete = params[:kanban][:kanban_milestones_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
             #     KanbanMilestone.delete(to_delete)
             # end
-
+            # logger.debug " 1: changed? params #{@kanban.changed} "
             @kanban.save
 
+            # @kanban.kanban_milestones.each do |p|
+            #     logger.debug " QQQQQ #{p.attributes} #{p.changed?}"
+            # end
+
+
             if params[:add_column]
-                @value_to_update = params[:kanban][:kanban_milestones_attributes].values[0].values[0]
-                @kanban.organizations.each { |i| i.have_milestones_added(@value_to_update, @kanban.kanban_milestones.last.id) }
+                # @value_to_update = params[:kanban][:kanban_milestones_attributes].values[0].values[0]
+                # @kanban.organizations.each { |i| i.have_milestones_added(@value_to_update, @kanban.kanban_milestones.last.id) }
                 # test: {"kanban_milestones_attributes"=>{"0"=>{"kms_name"=>"er"}}}
             end
 
-            # @organizations = @kanban.organizations.find_by(kanban_id: params[:id])
-            # @biz = Milestone.find_or_create_by_name(params[:milestone_key])
-            # @micropost = current_user.microposts.find_by(id: params[:id])
-
-            # logger.debug " #{@biz} "
-
-
             flash[:success] = "Kanban updated!"
 
-            logger.debug " @@@@@kanban params@@@@@@ #{kanban_params}"
+            # adds a new column
+            if !d1.empty?
+                @value_to_update = d1[0]
+                @kanban.organizations.each { |i| i.have_milestones_added(@value_to_update, @kanban.kanban_milestones.last.id) }
+            end
+
 
             # updates names of milestones in organizations as per kanban_milestones.
             # need to do it automatically - change the architecture?
@@ -101,6 +135,8 @@ class KanbansController < ApplicationController
             @kanban.organizations.find_each do |p|
                 p.milestones.find_each { |d| d.update_col_name }
             end
+
+            logger.debug " after save: @@@@@kanban params@@@@@@ #{kanban_params}"
 
             redirect_to @kanban and return
         else
@@ -117,4 +153,16 @@ class KanbansController < ApplicationController
 
         end
 
+        def detect_changes
+          @changed = []
+          # logger.debug " params #{params[:kanban][:kanban_milestones_attributes]} "
+          # @changed << params[:kanban][:kanban_milestones_attributes] if @kanban[:kanban_milestones_attributes] != params[:kanban][:kanban_milestones]
+          lists = params[:kanban][:kanban_milestones_attributes]
+          logger.debug " lists #{lists}"
+            lists.each do |i|
+                # logger.debug " #{i[1].has_key?('id')} "
+                @changed << i[1].fetch(:kms_name) if i[1].has_key?(:id) == false
+            end
+            @changed
+        end
 end
