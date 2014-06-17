@@ -29,7 +29,6 @@ class KanbansController < ApplicationController
 
     def default
         @kanban = Kanban.new
-        # 2.times { @kanban.kanban_milestones.build }
 
         @kanban.kanban_milestones.build
 
@@ -93,13 +92,6 @@ class KanbansController < ApplicationController
         if @kanban.update_attributes(kanban_params)
 
             d1 = detect_changes
-            # logger.debug " d1 #{d1}"
-
-
-            # logger.debug " #{@kanban.attributes} "
-            # logger.debug " 0.5: changed? params #{params[:kanban][:kanban_milestones_attributes]} "
-
-            # logger.debug " before save: @@@@@kanban params@@@@@@ #{kanban_params}"
 
             # not needed?
             # if params[:delete_columns]
@@ -108,25 +100,13 @@ class KanbansController < ApplicationController
             # end
             # logger.debug " 1: changed? params #{@kanban.changed} "
             @kanban.save
-
-            # logger.debug " previous changes: #{@kanban.kanban_milestones.previous_changes} "
-
-            @kanban.kanban_milestones.each do |o|
-                logger.debug " previous changes: #{o.previous_changes} "
-            end
-
-            # @kanban.kanban_milestones.each do |p|
-            #     logger.debug " QQQQQ #{p.attributes} #{p.changed?}"
+            # if params[:add_column]
+            #     # @value_to_update = params[:kanban][:kanban_milestones_attributes].values[0].values[0]
+            #     # @kanban.organizations.each { |i| i.have_milestones_added(@value_to_update, @kanban.kanban_milestones.last.id) }
+            #     # test: {"kanban_milestones_attributes"=>{"0"=>{"kms_name"=>"er"}}}
             # end
 
 
-            if params[:add_column]
-                # @value_to_update = params[:kanban][:kanban_milestones_attributes].values[0].values[0]
-                # @kanban.organizations.each { |i| i.have_milestones_added(@value_to_update, @kanban.kanban_milestones.last.id) }
-                # test: {"kanban_milestones_attributes"=>{"0"=>{"kms_name"=>"er"}}}
-            end
-
-            flash[:success] = "Kanban updated!"
 
             # adds a new column
             if !d1.empty?
@@ -142,7 +122,7 @@ class KanbansController < ApplicationController
                 p.milestones.find_each { |d| d.update_col_name }
             end
 
-            logger.debug " after save: @@@@@kanban params@@@@@@ #{kanban_params}"
+            flash[:success] = "Kanban updated!"
 
             redirect_to @kanban and return
         else
@@ -161,10 +141,8 @@ class KanbansController < ApplicationController
 
         def detect_changes
           @changed = []
-          # logger.debug " params #{params[:kanban][:kanban_milestones_attributes]} "
-          # @changed << params[:kanban][:kanban_milestones_attributes] if @kanban[:kanban_milestones_attributes] != params[:kanban][:kanban_milestones]
+
           lists = params[:kanban][:kanban_milestones_attributes]
-          logger.debug " lists #{lists}"
             lists.each do |i|
                 # logger.debug " #{i[1].has_key?('id')} "
                 @changed << i[1].fetch(:kms_name) if i[1].has_key?(:id) == false

@@ -27,23 +27,6 @@ class OrganizationsController < ApplicationController
             end
 
 
-            # @org.milestones.update
-
-            # current_kanban.kanban_milestones.each { |i| @org.milestones.build(params[:current_kanban]) }
-
-            # l = current_kanban.kanban_milestones.count
-            # 0.upto(l-1) do |i|
-            #     @milestone = Milestone.new
-            #     @milestone.milestone_key = current_kanban.kanban_milestones[i].kms_name
-            #     @milestone.milestone_value = "default"
-            #     @milestone.kanban_milestone_id = current_kanban.kanban_milestones[i].id
-
-            #     @milestone.save
-            #     @org.milestones << @milestone
-            # end
-
-
-
             if @org.save
                 # flash[:success] = "Welcome to the Kanban App!"
                 redirect_to current_kanban
@@ -68,10 +51,13 @@ class OrganizationsController < ApplicationController
 
         @org = Organization.find(params[:id])
 
-        logger.debug " uahaggajshdkfjasdkjshd"
+        logger.debug " uahaggajshdkfjasdkjshd   "
 
         if @org.update_attributes(org_params)
             @org.save
+
+            logger.debug " --- uahaggajshdkfjasdkjshd  --- "
+
             redirect_to current_kanban
         else
             render 'organizations/edit'
@@ -115,10 +101,5 @@ class OrganizationsController < ApplicationController
             # params.require(:organization).permit! #(:name, :progress, :org_columnholder)
             params.require(:organization).permit(:name, :id, :content, milestones_attributes: [:id, :milestone_key, :milestone_value])
         end
-
-        def mile_params
-            # params.require(:milestone).permit!
-        end
-
 
 end

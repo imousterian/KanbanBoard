@@ -7,8 +7,7 @@ class Organization < ActiveRecord::Base
     has_and_belongs_to_many :kanbans
 
     has_many :milestones, -> {order('id')} # allows to persist that the database records were always sorted by id?
-
-    accepts_nested_attributes_for :milestones, :allow_destroy => true, :update_only => true
+    accepts_nested_attributes_for :milestones, :allow_destroy => true #, :update_only => true
 
 
     # def org_delete_from_hstore(key)
@@ -17,13 +16,11 @@ class Organization < ActiveRecord::Base
     # end
 
     def have_milestones_added(value_to_update, k_id)
-        @milestone = Milestone.new
-        @milestone.milestone_key = value_to_update
-        @milestone.milestone_value = "default" if @milestone.milestone_value.nil?
+        # @milestone = Milestone.new
+        # @milestone.milestone_key = value_to_update
         # @milestone.kanban_milestone_id = k_id
-
-        @milestone.save
-        self.milestones << @milestone
+        # @milestone.save
+        self.milestones << milestones.build(:milestone_key => value_to_update, :kanban_milestone_id => k_id)
     end
 
 end
