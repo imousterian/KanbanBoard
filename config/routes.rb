@@ -1,5 +1,6 @@
 KanbanBoard::Application.routes.draw do
 
+  get "users/new"
     resources :kanbans
     resources :organizations
 
