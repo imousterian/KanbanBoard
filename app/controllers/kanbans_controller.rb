@@ -1,5 +1,6 @@
 class KanbansController < ApplicationController
-    include KanbansHelper
+    # include KanbansHelper
+    before_action :signed_in_user
 
 
     def index
@@ -28,7 +29,7 @@ class KanbansController < ApplicationController
 
 
     def default
-        @kanban = Kanban.new
+        @kanban = current_user.kanbans.build#Kanban.new
 
         @kanban.kanban_milestones.build
 
