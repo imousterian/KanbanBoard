@@ -1,13 +1,16 @@
 KanbanBoard::Application.routes.draw do
 
-  get "users/new"
+
     resources :kanbans
     resources :organizations
+    resources :users
 
     root "static_pages#home"
+
+    match '/signup', to: 'users#new', via: 'get'
+
     match '/makekanban', to: "kanbans#default", via: 'get'
-    # match '/modal_form', to: "kanbans#modal_form", via: 'get'
-    # get "kanbans/:id" => 'kanbans#modal_form', :as => :modal_form
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

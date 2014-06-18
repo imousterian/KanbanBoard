@@ -1,2 +1,36 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<div class = 'container center'>
+<h1>Sign up</h1>
+
+
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <!-- <div class = 'span6 offset3'> -->
+            <%= form_for(@user) do |f| %>
+
+                <p>
+                    <%= f.label :name %><br>
+                    <%= f.text_field :name, class: 'textfield' %>
+                </p>
+
+                <p>
+                    <%= f.label :email %> <br>
+                    <%= f.text_field :email, class: 'textfield' %>
+                </p>
+
+                <p>
+                    <%= f.label :password %> <br>
+                    <%= f.password_field :password, class: 'textfield' %>
+                </p>
+
+                <p>
+                    <%= f.label :password_confirmation, "Confirmation" %><br>
+                    <%= f.password_field :password_confirmation, class: 'textfield' %>
+                </p>
+
+          <p>
+            <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+        </p>
+        <% end %>
+      </div>
+    </div>
+</div>

@@ -238,6 +238,10 @@ textarea, .textfield {
     }
 }
 
+input {
+    height: auto !important;
+}
+
 // .field_with_errors {
 //   @extend .form-group;
 //   // @extend .error;
