@@ -3,7 +3,7 @@
             <div class="container">
                 <div class="navbar-header">
                     <% if signed_in? %>
-                        <%= link_to 'welcome, ' + current_user.name, root_path, id: "logo" %>
+                        <%= link_to 'welcome, ' + current_user.name, current_user, id: "logo" %>
                     <% end %>
                 </div>
                 <div class="collapse navbar-collapse">

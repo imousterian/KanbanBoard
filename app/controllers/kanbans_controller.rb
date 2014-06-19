@@ -1,6 +1,6 @@
 class KanbansController < ApplicationController
     # include KanbansHelper
-    before_action :signed_in_user
+    before_action :signed_in_user#, only: [:create, :destroy] - chapter 10, doublecheck later
 
 
     def index
@@ -9,7 +9,7 @@ class KanbansController < ApplicationController
     end
 
     def new
-        @kanban = Kanban.new
+        # @kanban = Kanban.new
         # @kanban.kanban_milestones.build
     end
 
@@ -20,10 +20,10 @@ class KanbansController < ApplicationController
     def show
 
         session[:current_kanban] = Hash.new
-        @kanban = Kanban.find(params[:id])
+        @kanban = current_user.kanbans.find_by_id(params[:id])#Kanban.find(params[:id])
         session[:current_kanban] = @kanban
 
-        logger.debug " show: this kanban has #{@kanban.kanban_milestones.count}"
+        # logger.debug " show: this kanban has #{@kanban.kanban_milestones.count}"
 
     end
 
@@ -37,14 +37,13 @@ class KanbansController < ApplicationController
             i.kms_name = "col_" + (index+1).to_s
         end
 
-        counter = Kanban.count + 1
+        counter = current_user.kanbans.count + 1#Kanban.count + 1
         @kanban.name = "Rename me! Kanban # " + counter.to_s
 
-        @kanban.save
-
-        flash[:success] = "New Kanban created!"
-
-        redirect_to kanbans_path
+        if @kanban.save
+            flash[:success] = "New Kanban created!"
+            redirect_to root_path #current_user #kanbans_path
+        end
     end
 
     def create

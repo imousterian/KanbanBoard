@@ -42,9 +42,10 @@
 
                     </tr>
 
-
                 <% end %> <!-- end of kanban.organizations.each -->
             </table>
+
+            <br>
 
         <p class='line2'>
             <a href= '/organizations/new' >
@@ -53,7 +54,7 @@
         </p>
 
         <p class='line line-show'>
-            <%= link_to "Back to all kanbans", kanbans_path %>
+            <%= link_to "Back to " + current_user.name.capitalize + "'s kanbans", current_user %> <%#kanbans_path%>
         </p>
 
  </div>
