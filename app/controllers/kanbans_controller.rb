@@ -2,10 +2,9 @@ class KanbansController < ApplicationController
     # include KanbansHelper
     before_action :signed_in_user#, only: [:create, :destroy] - chapter 10, doublecheck later
 
-
     def index
         @kanbans = Kanban.all
-        @kanbans = Kanban.order(:created_at => :desc)
+        # @kanbans = Kanban.order(:created_at => :desc)
     end
 
     def new
@@ -20,7 +19,7 @@ class KanbansController < ApplicationController
     def show
 
         session[:current_kanban] = Hash.new
-        @kanban = current_user.kanbans.find_by_id(params[:id])#Kanban.find(params[:id])
+        @kanban = current_user.kanbans.find_by(id: params[:id])#Kanban.find(params[:id])
         session[:current_kanban] = @kanban
 
         # logger.debug " show: this kanban has #{@kanban.kanban_milestones.count}"
@@ -29,6 +28,7 @@ class KanbansController < ApplicationController
 
 
     def default
+
         @kanban = current_user.kanbans.build#Kanban.new
 
         @kanban.kanban_milestones.build
@@ -44,6 +44,7 @@ class KanbansController < ApplicationController
             flash[:success] = "New Kanban created!"
             redirect_to root_path #current_user #kanbans_path
         end
+
     end
 
     def create
@@ -60,34 +61,16 @@ class KanbansController < ApplicationController
 
     end
 
+    def destroy
+        delete_organizations
+        @kanban.destroy
+        redirect_to root_path
+    end
+
     def update
 
-        @kanban = Kanban.find(params[:id])
-
-        # logger.debug " chnaged? params #{params[:kanban][:kanban_milestones_attributes]_changed?} "
-
-        # logger.debug " params[:kanban][:kanban_milestones_attributes] #{params[:kanban][:kanban_milestones_attributes]} "
-        # logger.debug " params[:kanban][:kanban_milestones] #{params[:kanban][:kanban_milestones]} "
-        # logger.debug " @kanban[:kanban_milestones_attributes #{@kanban[:kanban_milestones_attributes]} "
-
-        # logger.debug " 0: changed? params #{params[:kanban_milestones_attributes]} "
-
-        # d = detect_changes
-        # logger.debug " d #{d}"
-
-        # logger.debug " detect_chages #{d}"
-
-        # logger.debug "!!! @@@@@kanban params@@@@@@ #{kanban_params}"
-
-        # lists = params[:kanban][:kanban_milestones_attributes]
-        # # logger.debug " #{kanban.kanban_milestones}"
-
-        # lists.each do |i|
-        #     # logger.debug " #{i[1].has_key?(:id)}   #{i[1].fetch(:kms_name) if i[1].has_key?(:id) == false} "
-        # end
-        # @kanban.kanban_milestones.each do |p|
-        #     # logger.debug " #{p.attributes} #{p.changed?}"
-        # end
+        # @kanban = Kanban.find(params[:id])
+        @kanban = current_user.kanbans.find_by(id: params[:id])
 
         if @kanban.update_attributes(kanban_params)
 
@@ -105,8 +88,6 @@ class KanbansController < ApplicationController
             #     # @kanban.organizations.each { |i| i.have_milestones_added(@value_to_update, @kanban.kanban_milestones.last.id) }
             #     # test: {"kanban_milestones_attributes"=>{"0"=>{"kms_name"=>"er"}}}
             # end
-
-
 
             # adds a new column
             if !d1.empty?
@@ -133,10 +114,7 @@ class KanbansController < ApplicationController
 
     private
         def kanban_params
-            # params.require(:kanban).permit! #(:name, :columnholder, :settings)
-            # params.require(:kanban).permit(:settings, :name, :columnholder)
             params.require(:kanban).permit(:name, kanban_milestones_attributes: [:id, :kms_name, :_destroy] )
-
         end
 
         def detect_changes
@@ -144,9 +122,25 @@ class KanbansController < ApplicationController
 
           lists = params[:kanban][:kanban_milestones_attributes]
             lists.each do |i|
-                # logger.debug " #{i[1].has_key?('id')} "
                 @changed << i[1].fetch(:kms_name) if i[1].has_key?(:id) == false
             end
             @changed
         end
+
+        def delete_organizations
+            @kanban = current_user.kanbans.find_by(id: params[:id])
+            @kanban.organizations.find_each {|i| i.destroy }
+        end
 end
+
+
+
+
+
+
+
+
+
+
+
+

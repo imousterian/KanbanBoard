@@ -1,5 +1,5 @@
 class Organization < ActiveRecord::Base
-    include OrganizationsHelper
+    # include OrganizationsHelper
     # include KanbansHelper
 
     validates :name, :presence => {:message => 'cannot be empty'}

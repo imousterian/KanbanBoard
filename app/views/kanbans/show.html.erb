@@ -57,6 +57,10 @@
             <%= link_to "Back to " + current_user.name.capitalize + "'s kanbans", current_user %> <%#kanbans_path%>
         </p>
 
+        <p class='line line-show'>
+            <%= link_to "delete", @kanban, method: :delete %>
+        </p>
+
  </div>
 
 <div class="modal fade" id='test_modal' tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" area-hidden="true">
