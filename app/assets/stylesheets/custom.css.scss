@@ -26,6 +26,7 @@ textarea {
 
 .center h1 {
   margin-bottom: 10px;
+  line-height: 150%;
 }
 
 .dropdown-menu{
@@ -53,11 +54,6 @@ textarea {
     // text-align:center;
 }
 
-// .x{
-//     margin-right: 0px;
-// }
-
-
 .extended{
     display: block;
     width:100%;
@@ -67,8 +63,6 @@ b.caret-right {
   // border-right: 2px solid black;
   border-top: 4px solid transparent;
 }
-
-
 
 p.line, p.line2{
     width: 100%;
