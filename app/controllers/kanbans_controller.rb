@@ -1,5 +1,5 @@
 class KanbansController < ApplicationController
-    # include KanbansHelper
+
     before_action :signed_in_user#, only: [:create, :destroy] - chapter 10, doublecheck later
 
     def index
@@ -22,8 +22,6 @@ class KanbansController < ApplicationController
         @kanban = current_user.kanbans.find_by(id: params[:id])#Kanban.find(params[:id])
         session[:current_kanban] = @kanban
 
-        # logger.debug " show: this kanban has #{@kanban.kanban_milestones.count}"
-
     end
 
 
@@ -44,20 +42,6 @@ class KanbansController < ApplicationController
             flash[:success] = "New Kanban created!"
             redirect_to root_path #current_user #kanbans_path
         end
-
-    end
-
-    def create
-
-        # @kanban = Kanban.new(kanban_params)
-        # @kanban.kanban_milestones.build
-        # # @kanban.progress_settings(@kanban.columnholder, @kanban.columnholder)
-        # if @kanban.save
-        #     flash[:success] = "Welcome to the Kanban App!"
-        #     redirect_to kanbans_path
-        # else
-        #     render '/kanbans/new'
-        # end
 
     end
 

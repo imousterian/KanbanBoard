@@ -1,4 +1,5 @@
 class Milestone < ActiveRecord::Base
+
     # validates :organization_id, presence: true
     # validates :kanban_milestone_id, presence: true
 

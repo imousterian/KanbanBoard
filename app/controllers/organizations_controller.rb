@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-     # before_filter :reset_session
+
      include OrganizationsHelper
 
       def index
@@ -51,54 +51,18 @@ class OrganizationsController < ApplicationController
 
         @org = Organization.find(params[:id])
 
-        logger.debug " uahaggajshdkfjasdkjshd   "
-
         if @org.update_attributes(org_params)
             @org.save
-
-            logger.debug " --- uahaggajshdkfjasdkjshd  --- "
 
             redirect_to current_kanban
         else
             render 'organizations/edit'
         end
 
-
-
-        # logger.debug "#{@mile.id}"
-        # unless params[:organization][:milestones_attributes].blank?
-        #   for attribute in params[:organization][:milestones_attributes]
-        #     logger.debug " attributes #{attribute}"
-
-        #     # @org.milestones.sort_by! {|x| x.id}
-        #     # @org.milestones.order!(:milestone_value)
-        #     # @org.update(org_params)
-
-        #     # @org.save
-
-        #   end
-        # end
-
-
-
-        # @org.milestones.each do |i|
-        #     logger.debug " milestone id is #{i.id}"
-        # end
-
-
-        # if @org.update(org_params)
-        #     @org.save
-
-        #     redirect_to current_kanban
-        # else
-
-        # end
-
   end
 
   private
         def org_params
-            # params.require(:organization).permit! #(:name, :progress, :org_columnholder)
             params.require(:organization).permit(:name, :id, :content, milestones_attributes: [:id, :milestone_key, :milestone_value])
         end
 
