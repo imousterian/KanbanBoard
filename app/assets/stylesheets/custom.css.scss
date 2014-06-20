@@ -224,11 +224,20 @@ div.labelled{
 //     margin-top: 5px;
 // }
 
+/* mixins, variables, etc */
+
+@mixin box_sizing{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 textarea, .textfield {
     border: 1px solid #bbb;
     width: 100%;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-bottom: 15px;  // used to be 5px
+    // margin-top: 5px;
+    @include box_sizing;
 }
 #error_explanation {
     color: #f00;

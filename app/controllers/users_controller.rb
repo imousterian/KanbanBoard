@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+    def index
+    end
+
     def show
         @user = User.find(params[:id])
         # @kanbans = @user.kanbans
@@ -15,7 +18,8 @@ class UsersController < ApplicationController
             sign_in @user
             redirect_to @user
         else
-            render 'users/new'
+            # logger.debug "did not work"
+            render 'new'
         end
     end
 

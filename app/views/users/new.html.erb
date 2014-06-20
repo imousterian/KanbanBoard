@@ -1,36 +1,20 @@
-<div class = 'center'>
-<h1>Sign up</h1>
+<div class = 'container container-index center2 '>
 
+    <h1>Sign up</h1>
 
     <div class="row">
-      <div class="col-sm-6 col-sm-offset-3">
-        <!-- <div class = 'span6 offset3'> -->
-            <%= form_for(@user) do |f| %>
 
-                <p>
-                    <%= f.label :name %><br>
-                    <%= f.text_field :name, class: 'textfield' %>
-                </p>
+        <div class="col-sm-6 col-sm-offset-3">
 
-                <p>
-                    <%= f.label :email %> <br>
-                    <%= f.text_field :email, class: 'textfield' %>
-                </p>
+            <%= form_for @user do |f| %>
 
-                <p>
-                    <%= f.label :password %> <br>
-                    <%= f.password_field :password, class: 'textfield' %>
-                </p>
+                <%= render 'shared/messages', object: f.object %>
 
-                <p>
-                    <%= f.label :password_confirmation, "Confirmation" %><br>
-                    <%= f.password_field :password_confirmation, class: 'textfield' %>
-                </p>
+                <%= render 'fields', :f => f %>
 
-          <p>
-            <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
-        </p>
-        <% end %>
-      </div>
+                <p> <%= f.submit "Create my account", class: "btn btn-large btn-primary center" %> </p>
+
+            <% end %>
+        </div>
     </div>
 </div>

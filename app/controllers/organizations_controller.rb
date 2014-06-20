@@ -4,7 +4,6 @@ class OrganizationsController < ApplicationController
 
       def index
         @orgs = Organization.all
-        # @org.milestones.order(:id)
       end
 
       def new

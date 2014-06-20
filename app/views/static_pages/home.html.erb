@@ -1,13 +1,12 @@
+<% if signed_in? %>
 
-    <% if signed_in? %>
+    <%= render 'users/user_home' %>
 
-        <%= render 'users/user_home' %>
+<% else %>
 
-    <% else %>
+    <%= render 'main_home' %>
 
-        <%= render 'main_home' %>
-
-    <% end %>
+<% end %>
 
 
 
