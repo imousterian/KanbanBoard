@@ -54,11 +54,15 @@
         </p>
 
         <p class='line line-show'>
-            <%= link_to "Back to " + current_user.name.capitalize + "'s kanbans", current_user %> <%#kanbans_path%>
-        </p>
+            <%= link_to current_user do %>
+                Back to
+                <span id = "span-style"> <%= current_user.name.capitalize + "'s kanbans" %></span>
+            <% end %>&nbsp;|&nbsp;
 
-        <p class='line line-show'>
-            <%= link_to "delete", @kanban, method: :delete %>
+            <%= link_to @kanban, method: :delete do %>
+                Delete
+                <span id="span-style"> <%= @kanban.name %> </span>
+            <% end %>
         </p>
 
  </div>

@@ -19,7 +19,8 @@ class UsersController < ApplicationController
             redirect_to @user
         else
             # logger.debug "did not work"
-            render 'new'
+            # render 'new'
+            render new_user_path
         end
     end
 

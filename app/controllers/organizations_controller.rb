@@ -1,7 +1,5 @@
 class OrganizationsController < ApplicationController
 
-     include OrganizationsHelper
-
       def index
         @orgs = Organization.all
       end
@@ -27,7 +25,6 @@ class OrganizationsController < ApplicationController
 
 
             if @org.save
-                # flash[:success] = "Welcome to the Kanban App!"
                 redirect_to current_kanban
             else
                 render new_organization_path

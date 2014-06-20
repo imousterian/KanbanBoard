@@ -48,6 +48,7 @@ class KanbansController < ApplicationController
     def destroy
         delete_organizations
         @kanban.destroy
+        flash[:success] = @kanban.name + " destroyed!"
         redirect_to root_path
     end
 
