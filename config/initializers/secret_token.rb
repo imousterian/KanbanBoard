@@ -9,4 +9,20 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-KanbanBoard::Application.config.secret_key_base = 'a9fe9dbe5f1fd02e7f765928264f33eadc0ec3456e12dcf4a4398d4dce42e56a87889bc2a981a5b9988c486a275395f3fd6b384ebfafa6bf39a53c526524e513'
+
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+KanbanBoard::Application.config.secret_key_base = secure_token
