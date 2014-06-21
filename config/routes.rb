@@ -1,5 +1,8 @@
 KanbanBoard::Application.routes.draw do
 
+    scope ":username" do
+        get '', to: 'users#show', as: 'user_name'
+    end
 
     resources :kanbans
     resources :organizations
@@ -13,8 +16,6 @@ KanbanBoard::Application.routes.draw do
     match '/signout', to: 'sessions#destroy',     via: 'delete'
 
     match '/makekanban', to: "kanbans#default", via: 'get'
-
-    get '/users/:id', to: 'users#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

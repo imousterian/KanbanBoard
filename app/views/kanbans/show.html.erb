@@ -55,7 +55,7 @@
         <p class='line line-show'>
             <%= link_to current_user do %>
                 Back to
-                <span id = "span-style"> <%= current_user.name.capitalize + "'s kanbans" %></span>
+                <span id = "span-style"> <%= current_user.username.capitalize + "'s kanbans" %></span>
             <% end %>&nbsp;|&nbsp;
 
             <%= link_to @kanban, method: :delete, data: {confirm: "You sure?"} do %>

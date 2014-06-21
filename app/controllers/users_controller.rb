@@ -10,7 +10,8 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(params[:id])
+        # @user = User.find(params[:id])
+        @user = User.find_by username: params[:username]
     end
 
     def new
@@ -53,7 +54,7 @@ class UsersController < ApplicationController
 
     private
         def user_params
-            params.require(:user).permit(:name, :email, :password, :password_confirmation)
+            params.require(:user).permit(:username, :email, :password, :password_confirmation)
         end
 
         def signed_in_user_filter

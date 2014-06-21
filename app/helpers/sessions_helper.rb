@@ -6,6 +6,7 @@ module SessionsHelper
         user.update_attribute(:remember_token, User.digest(remember_token))
         self.current_user = user
     end
+
     def signed_in?
         !current_user.nil?
     end
