@@ -59,7 +59,7 @@
                 <span id = "span-style"> <%= current_user.name.capitalize + "'s kanbans" %></span>
             <% end %>&nbsp;|&nbsp;
 
-            <%= link_to @kanban, method: :delete do %>
+            <%= link_to @kanban, method: :delete, data: {confirm: "You sure?"} do %>
                 Delete
                 <span id="span-style"> <%= @kanban.name %> </span>
             <% end %>
