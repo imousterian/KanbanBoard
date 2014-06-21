@@ -1,7 +1,8 @@
 KanbanBoard::Application.routes.draw do
 
     scope ":username" do
-        get '', to: 'users#show', as: 'user_name'
+        get '/', to: 'users#show', as: 'user_name'
+        get '/edit', to: 'users#edit', as: 'user_name_edit'
     end
 
     resources :kanbans

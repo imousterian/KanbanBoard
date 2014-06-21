@@ -32,6 +32,7 @@ class UsersController < ApplicationController
 
     def destroy
         user = User.find(params[:id])
+        # @user = User.find_by username: params[:username]
         if (current_user? user) && (current_user.admin_md?)
             flash[:danger] = "Can not delete admin account"
         else
@@ -62,7 +63,8 @@ class UsersController < ApplicationController
         end
 
         def correct_user
-            @user = User.find(params[:id])
+            # @user = User.find(params[:id])
+            @user = User.find_by username: params[:username]
             redirect_to root_url unless current_user?(@user)
         end
 
