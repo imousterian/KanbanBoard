@@ -11,11 +11,22 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
-        # @kanbans = @user.kanbans
     end
 
     def new
         @user = User.new
+    end
+
+    def edit
+    end
+
+    def update
+        if @user.update_attributes(user_params)
+            flash[:success] = "Profile updated"
+            redirect_to @user
+        else
+            render 'edit'
+        end
     end
 
     def destroy
@@ -35,7 +46,6 @@ class UsersController < ApplicationController
             sign_in @user
             redirect_to @user
         else
-            # logger.debug "did not work"
             # render 'new'
             render new_user_path
         end

@@ -3,8 +3,7 @@ class KanbansController < ApplicationController
     before_action :signed_in_user#, only: [:create, :destroy] - chapter 10, doublecheck later
 
     def index
-        @kanbans = Kanban.all
-        # @kanbans = Kanban.order(:created_at => :desc)
+        @kanbans = current_user.kanbans
     end
 
     def new
@@ -20,7 +19,8 @@ class KanbansController < ApplicationController
 
         session[:current_kanban] = Hash.new
         @kanban = current_user.kanbans.find_by(id: params[:id])#Kanban.find(params[:id])
-        session[:current_kanban] = @kanban
+        logger.debug " test #{@kanban} "
+        session[:current_kanban] = @kanban if !@kanban.nil?
 
     end
 
