@@ -49,6 +49,10 @@ group :assets do
     gem 'bootstrap-modal-rails'
 end
 
+group :development, :test do
+    gem 'railroady'
+end
+
 
 
 # Use unicorn as the app server

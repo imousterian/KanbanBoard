@@ -73,6 +73,7 @@ GEM
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
+    railroady (1.1.1)
     rails (4.0.4)
       actionmailer (= 4.0.4)
       actionpack (= 4.0.4)
@@ -136,6 +137,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   pg
+  railroady
   rails (= 4.0.4)
   sass-rails (~> 4.0.2)
   sdoc
