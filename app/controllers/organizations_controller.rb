@@ -33,6 +33,7 @@ class OrganizationsController < ApplicationController
       end
 
   def show
+    @org = Organization.find(params[:id])
   end
 
   def edit
@@ -50,7 +51,7 @@ class OrganizationsController < ApplicationController
         if @org.update_attributes(org_params)
             @org.save
 
-            redirect_to current_kanban
+            redirect_to @org#current_kanban
         else
             render 'organizations/edit'
         end

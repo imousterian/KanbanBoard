@@ -1,2 +1,11 @@
-<h1>Organizations#show</h1>
-<p>Find me in app/views/organizations/show.html.erb</p>
+<div class="container container-index">
+    <h3> <%=@org.name %> </h3>
+
+    <%= @org.name %>
+    <%= @org.content %>
+
+    <p class = "line_edit" >
+        <%#= f.submit "Save changes", class: "btn btn-sm btn-primary" %>
+        <%= link_to 'Edit', edit_organization_path(@org), class: "btn btn-sm btn-primary" %>
+    </p>
+</div>

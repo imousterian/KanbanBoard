@@ -21,7 +21,7 @@
                     <tr>
                         <%= form_for this_org do |f| %>
 
-                            <td> <%= link_to f.object.name, edit_organization_path(this_org) %> </td>
+                            <td> <%= link_to f.object.name, organization_path(this_org) %> </td>
 
                             <%= f.fields_for :milestones do |ms| %>
 

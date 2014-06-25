@@ -1,2 +1,28 @@
-<h1>Organizations#edit</h1>
-<p>Find me in app/views/organizations/edit.html.erb</p>
+<div class="container container-index">
+    <h3> Editing <%=@org.name %> </h3>
+
+    <%= form_for @org, :url => {:action => "update"} do |f| %>
+        <%= render 'shared/messages', object: f.object %>
+
+        <table id="kanban_edit" >
+
+            <tr>
+                <th> <%= f.label "Name" %> </th>
+                <td> <%= f.text_field :name, class: "textfield" %> </td>
+            </tr>
+
+            <tr>
+                <th> <%= f.label "Notes" %> </th>
+                <td> <%= f.text_area :content %> </td>
+            </tr>
+
+        </table>
+
+
+
+    <p class = "line_edit" >
+        <%= f.submit "Save", class: "btn btn-sm btn-primary" %>
+        <%#= link_to 'Edit', edit_organization_path(@org), class: "btn btn-sm btn-primary" %>
+    </p>
+    <% end %>
+</div>
