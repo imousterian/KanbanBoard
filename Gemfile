@@ -48,7 +48,8 @@ end
 
 group :development, :test do
     gem 'railroady'
-    gem 'rspec-rails', '~> 3.0.0'
+    gem 'rspec-rails', '2.14.2'
+    gem "factory_girl_rails", "~> 4.0"
 end
 
 group :test do
@@ -58,6 +59,7 @@ group :test do
 
   gem 'selenium-webdriver'
   gem 'capybara'
+
 end
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
