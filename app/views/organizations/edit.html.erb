@@ -7,13 +7,13 @@
         <table id="kanban_edit" >
 
             <tr>
-                <th> <%= f.label "Name" %> </th>
+                <th valign="top" > <%#= f.label "Name" %> Name</th>
                 <td> <%= f.text_field :name, class: "textfield" %> </td>
             </tr>
 
             <tr>
-                <th> <%= f.label "Notes" %> </th>
-                <td> <%= f.text_area :content %> </td>
+                <th valign="top" > <%#= f.label "Notes" %> Notes</th>
+                <td> <%= f.text_area :content, class: "textfield" %> </td>
             </tr>
 
         </table>
@@ -22,7 +22,7 @@
 
     <p class = "line_edit" >
         <%= f.submit "Save", class: "btn btn-sm btn-primary" %>
-        <%#= link_to 'Edit', edit_organization_path(@org), class: "btn btn-sm btn-primary" %>
+        <%= link_to 'Cancel', organization_path(@org), class: "btn btn-sm btn-primary" %>
     </p>
     <% end %>
 </div>

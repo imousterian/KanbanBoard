@@ -242,8 +242,13 @@ textarea, .textfield {
 }
 
 input {
-    height: auto !important;
+    // height: auto !important;
 }
+
+textarea{
+    // resize: vertical;
+    // height: 100%;
+    }
 
 // .field_with_errors {
 //   @extend .form-group;

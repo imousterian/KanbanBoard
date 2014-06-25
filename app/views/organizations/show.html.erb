@@ -1,11 +1,24 @@
 <div class="container container-index">
     <h3> <%=@org.name %> </h3>
 
-    <%= @org.name %>
-    <%= @org.content %>
+    <table id="kanban_edit" >
+
+            <tr>
+                <th valign="top" > Name </th>
+                <td class="textfield" style="padding-left: 10px"> <%= @org.name %> </td>
+            </tr>
+
+            <tr>
+                <th valign="top" > Notes </th>
+                <td class="textfield" style="padding-left: 10px"> <%= wrap(@org.content) %> </td>
+            </tr>
+
+        </table>
 
     <p class = "line_edit" >
-        <%#= f.submit "Save changes", class: "btn btn-sm btn-primary" %>
+
         <%= link_to 'Edit', edit_organization_path(@org), class: "btn btn-sm btn-primary" %>
+        <%= link_to 'Cancel', current_user, class: "btn btn-sm btn-primary" %>
+
     </p>
 </div>
