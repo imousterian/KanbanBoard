@@ -6,7 +6,8 @@ Still in relatively early stages of development (this line will be edited to ref
 
 Still tests to be done (coming!).
 
-A deployed version of a current version should be available at kanbanist.herokuapp.com.
+A deployed version of a current version should be available at http://kanbanist.herokuapp.com. 
+(note: data may be erased during development period)
 
 To install:
 - bundle install
