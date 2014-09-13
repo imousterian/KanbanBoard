@@ -41,7 +41,7 @@
 <polyline fill="none" stroke="black" points="69.6083,247.236 201.204,247.236 "/>
 <polyline fill="none" stroke="black" points="69.6083,271.236 201.204,271.236 "/>
 <text text-anchor="start" x="77.6083" y="286.436" font-family="Times,serif" font-size="14.00">_layout</text>
-<text text-anchor="start" x="77.6083" y="300.436" font-family="Times,serif" font-size="14.00">delete_organizations</text>
+<text text-anchor="start" x="77.6083" y="300.436" font-family="Times,serif" font-size="14.00">delete_tasks</text>
 <text text-anchor="start" x="77.6083" y="314.436" font-family="Times,serif" font-size="14.00">detect_changes</text>
 <text text-anchor="start" x="77.6083" y="328.436" font-family="Times,serif" font-size="14.00">kanban_params</text>
 </g>
@@ -49,10 +49,10 @@
 <g id="edge1" class="edge"><title>ApplicationController&#45;&gt;KanbansController</title>
 <path fill="none" stroke="black" d="M70.8787,99.1579C74.0806,105.513 77.4715,112.244 80.9564,119.161"/>
 </g>
-<!-- OrganizationsController -->
-<g id="node4" class="node"><title>OrganizationsController</title>
+<!-- TasksController -->
+<g id="node4" class="node"><title>TasksController</title>
 <path fill="none" stroke="black" d="M-176.481,326.793C-176.481,326.793 -48.6507,326.793 -48.6507,326.793 -42.6507,326.793 -36.6507,320.793 -36.6507,314.793 -36.6507,314.793 -36.6507,164.793 -36.6507,164.793 -36.6507,158.793 -42.6507,152.793 -48.6507,152.793 -48.6507,152.793 -176.481,152.793 -176.481,152.793 -182.481,152.793 -188.481,158.793 -188.481,164.793 -188.481,164.793 -188.481,314.793 -188.481,314.793 -188.481,320.793 -182.481,326.793 -176.481,326.793"/>
-<text text-anchor="middle" x="-112.566" y="167.993" font-family="Times,serif" font-size="14.00">OrganizationsController</text>
+<text text-anchor="middle" x="-112.566" y="167.993" font-family="Times,serif" font-size="14.00">TasksController</text>
 <polyline fill="none" stroke="black" points="-188.481,174.793 -36.6507,174.793 "/>
 <text text-anchor="start" x="-180.481" y="189.993" font-family="Times,serif" font-size="14.00">create</text>
 <text text-anchor="start" x="-180.481" y="203.993" font-family="Times,serif" font-size="14.00">edit</text>
@@ -63,10 +63,10 @@
 <polyline fill="none" stroke="black" points="-188.481,266.793 -36.6507,266.793 "/>
 <polyline fill="none" stroke="black" points="-188.481,290.793 -36.6507,290.793 "/>
 <text text-anchor="start" x="-180.481" y="305.993" font-family="Times,serif" font-size="14.00">_layout</text>
-<text text-anchor="start" x="-180.481" y="319.993" font-family="Times,serif" font-size="14.00">org_params</text>
+<text text-anchor="start" x="-180.481" y="319.993" font-family="Times,serif" font-size="14.00">task_params</text>
 </g>
-<!-- ApplicationController&#45;&gt;OrganizationsController -->
-<g id="edge2" class="edge"><title>ApplicationController&#45;&gt;OrganizationsController</title>
+<!-- ApplicationController&#45;&gt;TasksController -->
+<g id="edge2" class="edge"><title>ApplicationController&#45;&gt;TasksController</title>
 <path fill="none" stroke="black" d="M7.9867,99.0951C-5.9062,115.31 -22.0058,134.1 -37.8267,152.564"/>
 </g>
 <!-- SessionsController -->

@@ -1,4 +1,4 @@
-module OrganizationsHelper
+module TasksHelper
 
     def wrap(content)
         content = content.gsub(/\n/, '<br/>')
@@ -11,5 +11,4 @@ module OrganizationsHelper
             regex = /.{1,#{max_width}}/
             (text.length < max_width) ? text: text.scan(regex).join(zero_width_space)
         end
-
 end

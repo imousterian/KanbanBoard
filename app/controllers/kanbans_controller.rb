@@ -1,14 +1,12 @@
 class KanbansController < ApplicationController
 
-    before_action :signed_in_user#, only: [:create, :destroy] - chapter 10, doublecheck later
+    before_action :signed_in_user
 
     def index
         @kanbans = current_user.kanbans
     end
 
     def new
-        # @kanban = Kanban.new
-        # @kanban.kanban_milestones.build
     end
 
     def edit
@@ -16,80 +14,53 @@ class KanbansController < ApplicationController
     end
 
     def show
-
         session[:current_kanban] = Hash.new
-        @kanban = current_user.kanbans.find_by(id: params[:id])#Kanban.find(params[:id])
-        logger.debug " test #{@kanban} "
+        @kanban = current_user.kanbans.find_by(id: params[:id])
         session[:current_kanban] = @kanban if !@kanban.nil?
-
     end
 
-
     def default
-
-        @kanban = current_user.kanbans.build#Kanban.new
-
+        @kanban = current_user.kanbans.build
         @kanban.kanban_milestones.build
 
         @kanban.kanban_milestones.each_with_index do |i, index|
             i.kms_name = "col_" + (index+1).to_s
         end
 
-        counter = current_user.kanbans.count + 1#Kanban.count + 1
+        counter = current_user.kanbans.count + 1
         @kanban.name = "Rename me! Kanban # " + counter.to_s
 
         if @kanban.save
             flash[:success] = "New Kanban created!"
-            redirect_to root_path #current_user #kanbans_path
+            redirect_to root_path
         end
 
     end
 
     def destroy
-        delete_organizations
+        delete_tasks
         @kanban.destroy
         flash[:success] = @kanban.name + " destroyed!"
         redirect_to root_path
     end
 
     def update
-
-        # @kanban = Kanban.find(params[:id])
         @kanban = current_user.kanbans.find_by(id: params[:id])
 
         if @kanban.update_attributes(kanban_params)
 
             d1 = detect_changes
-
-            # not needed?
-            # if params[:delete_columns]
-            #     to_delete = params[:kanban][:kanban_milestones_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
-            #     KanbanMilestone.delete(to_delete)
-            # end
-            # logger.debug " 1: changed? params #{@kanban.changed} "
             @kanban.save
-            # if params[:add_column]
-            #     # @value_to_update = params[:kanban][:kanban_milestones_attributes].values[0].values[0]
-            #     # @kanban.organizations.each { |i| i.have_milestones_added(@value_to_update, @kanban.kanban_milestones.last.id) }
-            #     # test: {"kanban_milestones_attributes"=>{"0"=>{"kms_name"=>"er"}}}
-            # end
 
-            # adds a new column
             if !d1.empty?
                 @value_to_update = d1[0]
-                @kanban.organizations.each { |i| i.have_milestones_added(@value_to_update, @kanban.kanban_milestones.last.id) }
+                @kanban.tasks.each { |i| i.have_milestones_added(@value_to_update, @kanban.kanban_milestones.last.id) }
             end
 
-
-            # updates names of milestones in organizations as per kanban_milestones.
-            # need to do it automatically - change the architecture?
-
-            @kanban.organizations.find_each do |p|
+            @kanban.tasks.find_each do |p|
                 p.milestones.find_each { |d| d.update_col_name }
             end
-
             flash[:success] = "Kanban updated!"
-
             redirect_to @kanban and return
         else
             render 'kanbans/edit'
@@ -112,9 +83,9 @@ class KanbansController < ApplicationController
             @changed
         end
 
-        def delete_organizations
+        def delete_tasks
             @kanban = current_user.kanbans.find_by(id: params[:id])
-            @kanban.organizations.find_each {|i| i.destroy }
+            @kanban.tasks.find_each { |i| i.destroy }
         end
 end
 

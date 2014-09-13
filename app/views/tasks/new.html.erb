@@ -1,0 +1,21 @@
+<div class="container container-index">
+    <h3> Add a new task: </h3>
+    <%= form_for(@task) do |f| %>
+    <%= render 'shared/messages', object: f.object %>
+    <table id="kanban_edit" >
+        <tr>
+            <th> <%= f.label "Name" %> </th>
+            <td> <%= f.text_field :name, value: "Enter name", class: "textfield" %> </td>
+        </tr>
+        <tr>
+            <th> <%= f.label "Notes" %> </th>
+            <td> <%= f.text_area :content, placeholder: "Compose new note..." %> </td>
+        </tr>
+    </table>
+    <p class = "line_edit" >
+        <%= f.submit "Save changes", class: "btn btn-sm btn-primary" %>
+        <%= link_to 'Cancel', kanban_path(session[:current_kanban]), class: "btn btn-sm btn-primary" %>
+    </p>
+    <% end %>
+</div>
+

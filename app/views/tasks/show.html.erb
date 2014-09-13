@@ -1,0 +1,17 @@
+<div class="container container-index">
+    <h3> Update <%=@task.name %> ?</h3>
+    <table id="kanban_edit" >
+        <tr>
+            <th valign="top" > Name </th>
+            <td class="textfield" style="padding-left: 10px"> <%= @task.name %> </td>
+        </tr>
+        <tr>
+            <th valign="top" > Notes </th>
+            <td class="textfield" style="padding-left: 10px"> <%= wrap(@task.content) %> </td>
+        </tr>
+    </table>
+    <p class = "line_edit" >
+        <%= link_to 'Yes', edit_task_path(@task), class: "btn btn-sm btn-primary" %>
+        <%= link_to 'No', :back, class: "btn btn-sm btn-primary", "data-no-turbolink" => true %>
+    </p>
+</div>

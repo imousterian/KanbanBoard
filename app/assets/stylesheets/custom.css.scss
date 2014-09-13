@@ -3,30 +3,29 @@
 /* universal */
 
 html {
-  overflow-y: scroll;
+    overflow-y: scroll;
 }
 
 body {
-  padding: 60px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-
+    padding: 60px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 section {
-  overflow: auto;
+    overflow: auto;
 }
 
 textarea {
-  resize: vertical;
+    resize: vertical;
 }
 
 .center {
-  text-align: center;
+    text-align: center;
 }
 
 .center h1 {
-  margin-bottom: 10px;
-  line-height: 150%;
+    margin-bottom: 10px;
+    line-height: 150%;
 }
 
 .dropdown-menu{
@@ -46,12 +45,11 @@ textarea {
 }
 
 #yelcolored{
-    background-color: #FFFF33; //#FFFF99;
+    background-color: #FFFF33;
 }
 
 #greencolored{
-    background-color: #66FF66; //#66FF99;
-    // text-align:center;
+    background-color: #66FF66;
 }
 
 .extended{
@@ -60,8 +58,7 @@ textarea {
 }
 
 b.caret-right {
-  // border-right: 2px solid black;
-  border-top: 4px solid transparent;
+    border-top: 4px solid transparent;
 }
 
 p.line, p.line2{
@@ -102,8 +99,6 @@ table#movies_delete, table#kanban{
     border-spacing: 1px;
     width: 100%;
     table-layout: fixed;
-
-
     th:first-child{
         text-align: left;
         a{
@@ -113,29 +108,23 @@ table#movies_delete, table#kanban{
     td:first-child{
         text-align: left;
     }
-
     th{
         font-weight: bold;
         background-color: #4c4c4c;
         font-size: 11pt;
         color: #ffffff;
-
     }
     td{
         background-color: #F8F8F8;
     }
-
     th, td{
         padding: 6px;
         text-align: center;
     }
-
     tr:hover td {
         background-color:rgba(255,255,255,0.1);
     }
-
 }
-
 
 table#kanban.for-plus {
     th:last-child{
@@ -165,11 +154,10 @@ table#kanban_edit{
 @media (min-width: 768px) {
   .container-index {
     max-width: 730px;
-    // background-color: red;
   }
 }
 
-// // override error fields
+/* override error fields */
 @media (min-width: 768px){
     .has-error .form-control, .field_with_errors .form-control{
         border-color: #FF0000;
@@ -177,7 +165,6 @@ table#kanban_edit{
 }
 
 /* Customize container */
-
 .container{
     h1,h2,h3{
         text-align: center;
@@ -185,8 +172,7 @@ table#kanban_edit{
     }
   }
 
-// tooltips:
-
+/* tooltips */
 .tooltip.right {
     .tooltip-inner {
         background-color: #428bca;
@@ -210,16 +196,7 @@ div.labelled{
      border-top: 4px solid transparent;
 }
 
-/* forms .uneditable-input*/
-// input, textarea, select {
-//     border: 1px solid #bbb;
-//     width: 100%;
-//     margin-bottom: 5px;
-//     margin-top: 5px;
-// }
-
 /* mixins, variables, etc */
-
 @mixin box_sizing{
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -229,8 +206,7 @@ div.labelled{
 textarea, .textfield {
     border: 1px solid #bbb;
     width: 100%;
-    margin-bottom: 15px;  // used to be 5px
-    // margin-top: 5px;
+    margin-bottom: 15px;
     @include box_sizing;
 }
 #error_explanation {
@@ -241,25 +217,7 @@ textarea, .textfield {
     }
 }
 
-input {
-    // height: auto !important;
-}
-
-textarea{
-    // resize: vertical;
-    // height: 100%;
-    }
-
-// .field_with_errors {
-//   @extend .form-group;
-//   // @extend .error;
-//   @extend .has-error;
-//   @extend .control-label;
-// }
-
-
 /* header */
-
 #logo{
     float: left;
     margin-right: 10px;
@@ -268,7 +226,6 @@ textarea{
     text-transform: uppercase;
     letter-spacing: -1px;
     padding-top: 9px;
-    // font-weight: bold;
     line-height: 1;
 
     &:hover{

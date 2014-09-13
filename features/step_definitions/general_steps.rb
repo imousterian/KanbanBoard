@@ -4,9 +4,9 @@ Given(/^I have an account$/) do
 end
 
 Given(/^I have a kanban and a task$/) do
-    @org = Organization.create!(name: "Org1")
+    @task = Task.create!(name: "Org1")
     @kanban = @user.kanbans.create!(name: "Kanban1")
-    @org.kanbans << @kanban
+    @task.kanbans << @kanban
 end
 
 Given(/^I am logged into my account$/) do
@@ -25,24 +25,24 @@ When(/^I click link for kanban$/) do
   expect(page).to have_content(@kanban.name)
 end
 
-And(/^I click link for organization$/) do
-  click_link(@org.name)
+And(/^I click link for task$/) do
+  click_link(@task.name)
 end
 
-Then(/^I see a main page for this organization$/) do
-  expect(page).to have_content(@org.name)
+Then(/^I see a main page for this task$/) do
+  expect(page).to have_content(@task.name)
 end
 
-When(/^I successfully edit the organization$/) do
+When(/^I successfully edit the task$/) do
     click_link "Edit"
-    expect(page).to have_content("Editing " + @org.name)
+    expect(page).to have_content("Editing " + @task.name)
 
-    fill_in "organization_name", :with => "Edited Name"
-    fill_in "organization_content", :with => "Edited Content"
+    fill_in "task_name", :with => "Edited Name"
+    fill_in "task_content", :with => "Edited Content"
     click_button "Save"
 end
 
-Then(/^I see an updated page for this organization$/) do
+Then(/^I see an updated page for this task$/) do
 
 
     expect(page).to have_content("Edited Name")

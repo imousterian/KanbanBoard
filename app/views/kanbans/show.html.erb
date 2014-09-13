@@ -1,69 +1,33 @@
-
 <div class='container'>
     <h2> Listing progress for <%= @kanban.name %> </h2>
-
-        <table id="kanban" class='table-hover for-plus'>
-
-            <tr>
-                <th> <%= link_to @kanban.name, edit_kanban_path %> </th>
-
-                <% @kanban.kanban_milestones.each do |name| %>
-                    <th> <%= name.kms_name %> </th>
-                <% end %>
-
-
-                <th> <a href = '<%=link_to @kanban %>' data-target="#test_modal" data-toggle="modal" style="width:100%" >
-                    <span class="glyphicon glyphicon-plus tag-tooltip" data-toggle="tooltip" data-placement="right" title="New column!"></span>
-                </th>
-
-            </tr>
-                <% @kanban.organizations.each do |this_org| %>
-                    <tr>
-                        <%= form_for this_org do |f| %>
-
-                            <td> <%= link_to f.object.name, organization_path(this_org) %> </td>
-
-                            <%= f.fields_for :milestones do |ms| %>
-
-                                <td class="dropdown" style="background-color: <%= this_org.milestones[ms.index].milestone_value %>" >
-
-                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle extended"><b class="caret caret-right" ></b> </a>
-                                        <ul class="dropdown-menu dropdown-menu-left" role="menu" >
-
-                                            <%= render 'dropdowns', :f => ms %>
-
-                                        </ul>
-                                </td>
-
-                            <% end %> <!-- end of f.fields -->
-
-                        <% end %> <!-- end of form_for -->
-
-                    </tr>
-
-                <% end %> <!-- end of kanban.organizations.each -->
-            </table>
-
-            <br>
-
-        <p class='line2'>
-            <a href= '/organizations/new' >
-                <span class="glyphicon glyphicon-plus tag-tooltip" data-toggle="tooltip" data-placement="bottom" title="New task!"></span>
-            </a>
-        </p>
-
-        <p class='line line-show'>
-            <%= link_to current_user do %>
-                Back to
-                <span id = "span-style"> <%= current_user.username.capitalize + "'s kanbans" %></span>
-            <% end %>&nbsp;|&nbsp;
-
-            <%= link_to @kanban, method: :delete, data: {confirm: "You sure?"} do %>
-                Delete
-                <span id="span-style"> <%= @kanban.name %> </span>
+    <table id="kanban" class='table-hover for-plus'>
+        <tr>
+            <th> <%= link_to @kanban.name, edit_kanban_path %> </th>
+            <% @kanban.kanban_milestones.each do |name| %>
+                <th> <%= name.kms_name %> </th>
             <% end %>
-        </p>
-
+            <th> <a href = '<%=link_to @kanban %>' data-target="#test_modal" data-toggle="modal" style="width:100%" >
+                <span class="glyphicon glyphicon-plus tag-tooltip" data-toggle="tooltip" data-placement="right" title="New column!"></span>
+            </th>
+        </tr>
+        <% @kanban.tasks.each do |this_org| %>
+        <tr>
+            <%= form_for this_org do |f| %>
+                <td> <%= link_to f.object.name, task_path(this_org) %> </td>
+                <%= f.fields_for :milestones do |ms| %>
+                        <td class="dropdown" style="background-color: <%= this_org.milestones[ms.index].milestone_value %>" >
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle extended"><b class="caret caret-right" ></b> </a>
+                            <ul class="dropdown-menu dropdown-menu-left" role="menu" >
+                                <%= render 'dropdowns', :f => ms %>
+                            </ul>
+                        </td>
+                <% end %> <!-- end of f.fields -->
+            <% end %> <!-- end of form_for -->
+        </tr>
+        <% end %> <!-- end of kanban.tasks.each -->
+    </table>
+    <br>
+    <%= render 'adding_orgs' %>
  </div>
 
 <div class="modal fade" id='test_modal' tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" area-hidden="true">

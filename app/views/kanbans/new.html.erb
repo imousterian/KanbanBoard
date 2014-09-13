@@ -1,30 +1,22 @@
-
 <div class="container">
     <h2> Default Kanban </h2>
-        <%= form_for(@kanban) do |f| %>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th> # </th>
-                        <th> # </th>
-                    </tr>
-                </thead>
-
+    <%= form_for(@kanban) do |f| %>
+        <table>
+            <thead>
+                <tr>
+                    <th> # </th>
+                    <th> # </th>
+                </tr>
+            </thead>
             <tbody>
                 <tr>
-
                     <td> <%= f.text_field :name, value: "Enter name" %> </td>
                     <td> <%= f.text_field :columnholder %> </td>
-
-
                     <td> <a href= '/kanbans/new'><span class="glyphicon glyphicon-plus"></span></a></td>
-
                 </tr>
             </tbody>
         </table>
-        <br>
-            <%= f.submit "Save changes", class: "btn btn-lg btn-primary" %>
-
-        <% end %>
+    <br>
+    <%= f.submit "Save changes", class: "btn btn-lg btn-primary" %>
+    <% end %>
 </div>

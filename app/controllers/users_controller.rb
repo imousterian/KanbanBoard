@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-    before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
-    before_action :correct_user, only: [:edit, :update]
+    before_action :signed_in_user, only: [:index, :show, :edit, :update, :destroy]
+    before_action :correct_user, only: [:show, :edit, :update]
     before_action :admin_user, only: :destroy
     before_filter :signed_in_user_filter, only: [:new, :create]
 
@@ -10,8 +10,6 @@ class UsersController < ApplicationController
     end
 
     def show
-        # @user = User.find(params[:id])
-        @user = User.find_by username: params[:username]
     end
 
     def new
@@ -32,7 +30,6 @@ class UsersController < ApplicationController
 
     def destroy
         user = User.find(params[:id])
-        # @user = User.find_by username: params[:username]
         if (current_user? user) && (current_user.admin_md?)
             flash[:danger] = "Can not delete admin account"
         else
@@ -48,7 +45,6 @@ class UsersController < ApplicationController
             sign_in @user
             redirect_to @user
         else
-            # render 'new'
             render new_user_path
         end
     end
@@ -63,7 +59,6 @@ class UsersController < ApplicationController
         end
 
         def correct_user
-            # @user = User.find(params[:id])
             @user = User.find_by username: params[:username]
             redirect_to root_url unless current_user?(@user)
         end

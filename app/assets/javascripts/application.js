@@ -14,12 +14,15 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap
-//= require test
 //= require turbolinks
 
 //= require_tree .
 
+$(function()
+{
+    $('.tag-tooltip').tooltip();
 
+});
 
 
 

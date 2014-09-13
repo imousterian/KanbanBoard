@@ -47,10 +47,10 @@
 <ellipse fill="none" stroke="#cfe381" cx="179.92" cy="-327.212" rx="4.00002" ry="4.00002"/>
 <polygon fill="#cfe381" stroke="#cfe381" points="152.168,-287.877 150.081,-277.112 149.286,-283.791 146.404,-279.706 146.404,-279.706 146.404,-279.706 149.286,-283.791 142.727,-282.3 152.168,-287.877 152.168,-287.877"/>
 </g>
-<!-- Organization -->
-<g id="node5" class="node"><title>Organization</title>
+<!-- Task -->
+<g id="node5" class="node"><title>Task</title>
 <path fill="none" stroke="black" d="M208.461,-165.5C208.461,-165.5 342.915,-165.5 342.915,-165.5 348.915,-165.5 354.915,-171.5 354.915,-177.5 354.915,-177.5 354.915,-281.5 354.915,-281.5 354.915,-287.5 348.915,-293.5 342.915,-293.5 342.915,-293.5 208.461,-293.5 208.461,-293.5 202.461,-293.5 196.461,-287.5 196.461,-281.5 196.461,-281.5 196.461,-177.5 196.461,-177.5 196.461,-171.5 202.461,-165.5 208.461,-165.5"/>
-<text text-anchor="middle" x="275.688" y="-278.3" font-family="Times,serif" font-size="14.00">Organization</text>
+<text text-anchor="middle" x="275.688" y="-278.3" font-family="Times,serif" font-size="14.00">Task</text>
 <polyline fill="none" stroke="black" points="196.461,-271.5 354.915,-271.5 "/>
 <text text-anchor="start" x="204.461" y="-256.3" font-family="Times,serif" font-size="14.00">id :integer</text>
 <text text-anchor="start" x="204.461" y="-242.3" font-family="Times,serif" font-size="14.00">name :string</text>
@@ -60,8 +60,8 @@
 <text text-anchor="start" x="204.461" y="-186.3" font-family="Times,serif" font-size="14.00">updated_at :datetime</text>
 <text text-anchor="start" x="204.461" y="-172.3" font-family="Times,serif" font-size="14.00">org_columnholder :string</text>
 </g>
-<!-- Kanban&#45;&gt;Organization -->
-<g id="edge1" class="edge"><title>Kanban&#45;&gt;Organization</title>
+<!-- Kanban&#45;&gt;Task -->
+<g id="edge1" class="edge"><title>Kanban&#45;&gt;Task</title>
 <path fill="none" stroke="#9c01fd" d="M248.56,-320.743C250.302,-314.947 252.062,-309.093 253.804,-303.297"/>
 <polygon fill="#9c01fd" stroke="#9c01fd" points="248.511,-320.903 241.323,-329.184 247.072,-325.692 245.632,-330.48 245.632,-330.48 245.632,-330.48 247.072,-325.692 249.942,-331.775 248.511,-320.903 248.511,-320.903"/>
 <polygon fill="#9c01fd" stroke="#9c01fd" points="253.834,-303.198 261.022,-294.917 255.273,-298.41 256.713,-293.621 256.713,-293.621 256.713,-293.621 255.273,-298.41 252.403,-292.326 253.834,-303.198 253.834,-303.198"/>
@@ -77,7 +77,7 @@
 <text text-anchor="start" x="192.682" y="-49.3" font-family="Times,serif" font-size="14.00">created_at :datetime</text>
 <text text-anchor="start" x="192.682" y="-35.3" font-family="Times,serif" font-size="14.00">updated_at :datetime</text>
 <text text-anchor="start" x="192.682" y="-21.3" font-family="Times,serif" font-size="14.00">kanban_milestone_id :integer</text>
-<text text-anchor="start" x="192.682" y="-7.3" font-family="Times,serif" font-size="14.00">organization_id :integer</text>
+<text text-anchor="start" x="192.682" y="-7.3" font-family="Times,serif" font-size="14.00">task_id :integer</text>
 </g>
 <!-- KanbanMilestone&#45;&gt;Milestone -->
 <g id="edge4" class="edge"><title>KanbanMilestone&#45;&gt;Milestone</title>
@@ -85,8 +85,8 @@
 <ellipse fill="none" stroke="#045918" cx="164.175" cy="-176.333" rx="4.00002" ry="4.00002"/>
 <polygon fill="#045918" stroke="#045918" points="205.146,-135.611 215.411,-131.754 208.693,-132.087 212.239,-128.562 212.239,-128.562 212.239,-128.562 208.693,-132.087 209.067,-125.37 205.146,-135.611 205.146,-135.611"/>
 </g>
-<!-- Organization&#45;&gt;Milestone -->
-<g id="edge7" class="edge"><title>Organization&#45;&gt;Milestone</title>
+<!-- Task&#45;&gt;Milestone -->
+<g id="edge7" class="edge"><title>Task&#45;&gt;Milestone</title>
 <path fill="none" stroke="#4ff46a" d="M275.688,-157.473C275.688,-151.322 275.688,-145.09 275.688,-138.92"/>
 <ellipse fill="none" stroke="#4ff46a" cx="275.688" cy="-161.48" rx="4" ry="4"/>
 <polygon fill="#4ff46a" stroke="#4ff46a" points="275.688,-138.621 280.188,-128.621 275.688,-133.621 275.688,-128.621 275.688,-128.621 275.688,-128.621 275.688,-133.621 271.188,-128.621 275.688,-138.621 275.688,-138.621"/>
@@ -128,8 +128,8 @@
 <g id="edge6" class="edge"><title>ActiveRecord::Base&#45;&gt;Milestone</title>
 <path fill="none" stroke="black" d="M313.955,-692.299C341.989,-623.314 437.924,-360.992 363.688,-165 358.827,-152.168 351.473,-139.926 343.046,-128.693"/>
 </g>
-<!-- ActiveRecord::Base&#45;&gt;Organization -->
-<g id="edge8" class="edge"><title>ActiveRecord::Base&#45;&gt;Organization</title>
+<!-- ActiveRecord::Base&#45;&gt;Task -->
+<g id="edge8" class="edge"><title>ActiveRecord::Base&#45;&gt;Task</title>
 <path fill="none" stroke="black" d="M308.31,-692.325C313.012,-638.464 324.958,-468.232 302.688,-330 300.78,-318.16 298.022,-305.703 294.989,-293.761"/>
 </g>
 <!-- ActiveRecord::Base&#45;&gt;User -->

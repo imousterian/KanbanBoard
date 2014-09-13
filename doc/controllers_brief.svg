@@ -31,13 +31,13 @@
 <g id="edge1" class="edge"><title>ApplicationController&#45;&gt;KanbansController</title>
 <path fill="none" stroke="black" d="M8.16636,41.3622C20.0141,47.7177 33.4663,54.9338 45.2639,61.2624"/>
 </g>
-<!-- OrganizationsController -->
-<g id="node4" class="node"><title>OrganizationsController</title>
+<!-- TasksController -->
+<g id="node4" class="node"><title>TasksController</title>
 <ellipse fill="none" stroke="black" cx="-114.444" cy="81.8601" rx="95.815" ry="18"/>
-<text text-anchor="middle" x="-114.444" y="86.0601" font-family="Times,serif" font-size="14.00">OrganizationsController</text>
+<text text-anchor="middle" x="-114.444" y="86.0601" font-family="Times,serif" font-size="14.00">TasksController</text>
 </g>
-<!-- ApplicationController&#45;&gt;OrganizationsController -->
-<g id="edge2" class="edge"><title>ApplicationController&#45;&gt;OrganizationsController</title>
+<!-- ApplicationController&#45;&gt;TasksController -->
+<g id="edge2" class="edge"><title>ApplicationController&#45;&gt;TasksController</title>
 <path fill="none" stroke="black" d="M-50.6675,41.6863C-62.0947,48.8845 -75.3529,57.236 -86.8113,64.4539"/>
 </g>
 <!-- SessionsController -->

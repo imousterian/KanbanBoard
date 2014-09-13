@@ -1,4 +1,4 @@
-Feature: Editing an organization
+Feature: Editing a task
     As a kanban owner
     In order to control my tasks
     I want to be able to edit information
@@ -10,8 +10,8 @@ Feature: Editing an organization
 
     Scenario: Successful edit
         When I click link for kanban
-        And I click link for organization
-        Then I see a main page for this organization
-        When I successfully edit the organization
-        Then I see an updated page for this organization
+        And I click link for task
+        Then I see a main page for this task
+        When I successfully edit the task
+        Then I see an updated page for this task
 

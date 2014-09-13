@@ -33,13 +33,13 @@
 <ellipse fill="none" stroke="#8c5071" cx="251.359" cy="-142.716" rx="4.00002" ry="4.00002"/>
 <polygon fill="#8c5071" stroke="#8c5071" points="221.621,-114.586 217.449,-104.445 217.989,-111.15 214.357,-107.714 214.357,-107.714 214.357,-107.714 217.989,-111.15 211.264,-110.983 221.621,-114.586 221.621,-114.586"/>
 </g>
-<!-- Organization -->
-<g id="node5" class="node"><title>Organization</title>
+<!-- Task -->
+<g id="node5" class="node"><title>Task</title>
 <ellipse fill="none" stroke="black" cx="343.688" cy="-90" rx="56.2326" ry="18"/>
-<text text-anchor="middle" x="343.688" y="-85.8" font-family="Times,serif" font-size="14.00">Organization</text>
+<text text-anchor="middle" x="343.688" y="-85.8" font-family="Times,serif" font-size="14.00">Task</text>
 </g>
-<!-- Kanban&#45;&gt;Organization -->
-<g id="edge1" class="edge"><title>Kanban&#45;&gt;Organization</title>
+<!-- Kanban&#45;&gt;Task -->
+<g id="edge1" class="edge"><title>Kanban&#45;&gt;Task</title>
 <path fill="none" stroke="#69eb80" d="M294.247,-138.409C302.193,-130.79 311.079,-122.269 319.102,-114.575"/>
 <polygon fill="#69eb80" stroke="#69eb80" points="294.107,-138.544 283.774,-142.217 290.498,-142.004 286.889,-145.465 286.889,-145.465 286.889,-145.465 290.498,-142.004 290.003,-148.713 294.107,-138.544 294.107,-138.544"/>
 <polygon fill="#69eb80" stroke="#69eb80" points="319.553,-114.143 329.886,-110.47 323.162,-110.682 326.771,-107.222 326.771,-107.222 326.771,-107.222 323.162,-110.682 323.656,-103.974 319.553,-114.143 319.553,-114.143"/>
@@ -55,8 +55,8 @@
 <ellipse fill="none" stroke="#68d547" cx="232.559" cy="-71.9184" rx="4.00002" ry="4.00002"/>
 <polygon fill="#68d547" stroke="#68d547" points="306.442,-36.7359 317.406,-36.4994 310.957,-34.5862 315.471,-32.4365 315.471,-32.4365 315.471,-32.4365 310.957,-34.5862 313.536,-28.3736 306.442,-36.7359 306.442,-36.7359"/>
 </g>
-<!-- Organization&#45;&gt;Milestone -->
-<g id="edge7" class="edge"><title>Organization&#45;&gt;Milestone</title>
+<!-- Task&#45;&gt;Milestone -->
+<g id="edge7" class="edge"><title>Task&#45;&gt;Milestone</title>
 <path fill="none" stroke="#c0b422" d="M343.688,-63.6398C343.688,-58.0629 343.688,-52.1319 343.688,-46.4761"/>
 <ellipse fill="none" stroke="#c0b422" cx="343.688" cy="-67.6966" rx="4" ry="4"/>
 <polygon fill="#c0b422" stroke="#c0b422" points="343.688,-46.1043 348.188,-36.1043 343.688,-41.1043 343.688,-36.1043 343.688,-36.1043 343.688,-36.1043 343.688,-41.1043 339.188,-36.1044 343.688,-46.1043 343.688,-46.1043"/>
@@ -89,8 +89,8 @@
 <g id="edge6" class="edge"><title>ActiveRecord::Base&#45;&gt;Milestone</title>
 <path fill="none" stroke="black" d="M317.939,-306.58C340.56,-271.426 390.901,-187.155 408.688,-108 412.196,-92.3893 415.552,-86.453 408.688,-72 400.692,-55.1645 384.442,-41.9145 370.191,-32.8734"/>
 </g>
-<!-- ActiveRecord::Base&#45;&gt;Organization -->
-<g id="edge8" class="edge"><title>ActiveRecord::Base&#45;&gt;Organization</title>
+<!-- ActiveRecord::Base&#45;&gt;Task -->
+<g id="edge8" class="edge"><title>ActiveRecord::Base&#45;&gt;Task</title>
 <path fill="none" stroke="black" d="M309.408,-306.404C316.251,-263.407 334.116,-151.145 340.963,-108.121"/>
 </g>
 <!-- ActiveRecord::Base&#45;&gt;User -->

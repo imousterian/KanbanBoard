@@ -1,0 +1,16 @@
+<p class='line2'>
+    <a href= '/tasks/new' >
+        <span class="glyphicon glyphicon-plus tag-tooltip" data-toggle="tooltip" data-placement="bottom" title="New task!"></span>
+    </a>
+</p>
+<p class='line line-show'>
+    <%= link_to current_user do %>
+        Back to
+        <span id = "span-style"> <%= current_user.username.capitalize + "'s kanbans" %></span>
+    <% end %>&nbsp;|&nbsp;
+
+    <%= link_to @kanban, method: :delete, data: {confirm: "You sure?"} do %>
+        Delete
+        <span id="span-style"> <%= @kanban.name %> </span>
+    <% end %>
+</p>

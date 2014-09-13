@@ -1,28 +1,20 @@
 <div class="container container-index">
-    <h3> Editing <%=@org.name %> </h3>
-
-    <%= form_for @org, :url => {:action => "update"} do |f| %>
+    <h3> Editing <%=@task.name %> </h3>
+    <%= form_for @task, :url => {:action => "update"} do |f| %>
         <%= render 'shared/messages', object: f.object %>
-
         <table id="kanban_edit" >
-
             <tr>
-                <th valign="top" > <%#= f.label "Name" %> Name</th>
+                <th valign="top" > Name</th>
                 <td> <%= f.text_field :name, class: "textfield" %> </td>
             </tr>
-
             <tr>
-                <th valign="top" > <%#= f.label "Notes" %> Notes</th>
+                <th valign="top" > Notes</th>
                 <td> <%= f.text_area :content, class: "textfield", rows: "4" %> </td>
             </tr>
-
         </table>
-
-
-
     <p class = "line_edit" >
         <%= f.submit "Save", class: "btn btn-sm btn-primary" %>
-        <%= link_to 'Cancel', organization_path(@org), class: "btn btn-sm btn-primary" %>
+        <%= link_to 'Cancel', task_path(@task), class: "btn btn-sm btn-primary" %>
     </p>
     <% end %>
 </div>
