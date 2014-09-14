@@ -40,6 +40,11 @@ class TasksController < ApplicationController
         end
     end
 
+    def destroy
+        @task = Task.find(params[:id])
+        @task.destroy
+    end
+
     private
         def task_params
             params.require(:task).permit(:name, :id, :content, milestones_attributes: [:id, :milestone_key, :milestone_value])

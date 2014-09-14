@@ -34,11 +34,6 @@ ActiveRecord::Schema.define(version: 20140617220936) do
 
   add_index "kanbans", ["user_id", "created_at"], name: "index_kanbans_on_user_id_and_created_at", using: :btree
 
-  create_table "kanbans_tasks", force: true do |t|
-    t.integer "kanban_id"
-    t.integer "task_id"
-  end
-
   create_table "milestones", force: true do |t|
     t.string   "milestone_key"
     t.string   "milestone_value"
@@ -60,6 +55,14 @@ ActiveRecord::Schema.define(version: 20140617220936) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+
+  create_table "taggings", force: true do |t|
+    t.integer "task_id"
+    t.integer "kanban_id"
+  end
+
+  add_index "taggings", ["kanban_id"], name: "index_taggings_on_kanban_id", using: :btree
+  add_index "taggings", ["task_id"], name: "index_taggings_on_task_id", using: :btree
 
   create_table "tasks", force: true do |t|
     t.string   "name"

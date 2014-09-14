@@ -1,7 +1,8 @@
 class Task < ActiveRecord::Base
 
     validates :name, :presence => {:message => 'cannot be empty'}
-    has_and_belongs_to_many :kanbans
+    has_many :taggings
+    has_many :kanbans, through: :taggings
     has_many :milestones, -> {order('id')}
     accepts_nested_attributes_for :milestones, :allow_destroy => true
 

@@ -38,7 +38,6 @@ class KanbansController < ApplicationController
     end
 
     def destroy
-        delete_tasks
         @kanban.destroy
         flash[:success] = @kanban.name + " destroyed!"
         redirect_to root_path
@@ -74,18 +73,13 @@ class KanbansController < ApplicationController
         end
 
         def detect_changes
-          @changed = []
+            @changed = []
 
-          lists = params[:kanban][:kanban_milestones_attributes]
-            lists.each do |i|
-                @changed << i[1].fetch(:kms_name) if i[1].has_key?(:id) == false
-            end
+            lists = params[:kanban][:kanban_milestones_attributes]
+                lists.each do |i|
+                    @changed << i[1].fetch(:kms_name) if i[1].has_key?(:id) == false
+                end
             @changed
-        end
-
-        def delete_tasks
-            @kanban = current_user.kanbans.find_by(id: params[:id])
-            @kanban.tasks.find_each { |i| i.destroy }
         end
 end
 
